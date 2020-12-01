@@ -69,12 +69,16 @@ Halo bros welcome here~
       
       **- Try to go through and follow along the video first, to grab the basic of using git & github**
 
+----------------------------------
 
-      ## Alright! for those who are done with cloning the repo to your local machine, you might have wonder what if other people update the master branch of the repo on GitHub, then your repo on your local machine is not keeping up the track anymore**
+**Second task: Update your local machine repo to keep track with the remote repo (SERIOUS ALERT!!! ONLY COME HERE WHEN YOU'RE DONE WITH THE FIRST PART)**
 
-            - So now, you have to manually update the the local repo from our remote repo (we call it as 'pull' the remote repo to our local machine)
-            - Do this (in the repo's directory):
-                  - git pull origin main
-            - After that, u will have the latest bugless repo on your local machine!
+1. Alright! for those who are done with cloning the repo to your local machine, you might have wonder what if other people update the master branch of the repo on GitHub, then your repo on your local machine is not keeping up the track anymore
+
+2. So now, you have to manually update the the local repo from our remote repo (we call it as 'pull' the remote repo to our local machine)
+      | Do this (in the repo's directory): |
+      | :--------------------------------- |
+      | git pull origin main | 
+3. After that, u will have the latest bugless repo on your local machine!
       
 
