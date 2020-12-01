@@ -13,6 +13,7 @@ Halo bros welcome here~
       
 3. The website would make no sense at all at first, so can follow along this simple guide on github first
       - https://www.youtube.com/watch?v=DVRQoVRzMIY (u can look for other videos as well)
+      - In the video, he used **"sublime text"**, which is a text editor like **"notepad"** or **"visual studio code"**, don't be confused, just use **notepad** if you do not have any other text editor. 
 
       - **If you realize that there is no 'master' branch in GitHub, you are right! GitHub renamed the default branch of our own repositories from 'master' to 'main'**
       
