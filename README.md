@@ -5,10 +5,13 @@ A desktop app for patients to reserve and book appointment time in a clinic
 Halo bros welcome here~
 
 **Take some time to get yourself familiar with this platforrm first**
-1. I find this website might act as a guide for us to use this platform
+1. Install git on windows 10 
+      - https://www.youtube.com/watch?v=wSGuir8BUeU
+      
+2. I find this website might act as a guide for us to use this platform
       - https://uoftcoders.github.io/studyGroup/lessons/git/collaboration/lesson/
       
-2. The website would make no sense at all at first, so can follow along this simple guide on github first
+3. The website would make no sense at all at first, so can follow along this simple guide on github first
       - https://www.youtube.com/watch?v=DVRQoVRzMIY (u can look for other videos as well)
 
       - **If you realize that there is no 'master' branch in GitHub, you are right! GitHub renamed the default branch of our own repositories from 'master' to 'main'**
