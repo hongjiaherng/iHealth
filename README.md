@@ -5,7 +5,7 @@ A desktop app for patients to reserve and book appointment time in a clinic
 Halo bros welcome here~
 
 **Take some time to get yourself familiar with this platforrm first**
-1. Install git on windows 10 
+1. Install git on windows 10 (https://git-scm.com/downloads)
       - https://www.youtube.com/watch?v=wSGuir8BUeU
       
 2. I find this website might act as a guide for us to use this platform
