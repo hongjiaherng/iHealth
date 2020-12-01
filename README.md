@@ -10,6 +10,8 @@ Halo bros welcome here~
       
 2. The website would make no sense at all at first, so can follow along this simple guide on github first
       - https://www.youtube.com/watch?v=DVRQoVRzMIY (u can look for other videos as well)
+
+      - **If you realized that there is no 'master' branch in GitHub, you are right! GitHub renamed the default branch of our own repositories from 'master' to 'main'**
       
       
       
@@ -17,3 +19,5 @@ Halo bros welcome here~
       **but if everybody is comfortable with it, our workflow would be smoother and everybody gets to learn.**
       
       **- Try to go through and follow along the video first, to grab the basic of using git & github**
+      
+
