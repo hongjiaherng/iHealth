@@ -18,37 +18,42 @@ Halo bros welcome here~
 4. So, let's make this to your local machine after you understand the basic of git
 
       1st step:
+      
             - Copy the HTTPS / SSH links which will look like this https://github.com/hongjiaherng/iHealth.git
             - Open command prompt / git bash on your local computer and cd to the directory which you want to put this assignment folder
 
-                  | Command(e.g.): |
-                  | :-------------------- |
-                  | cd Desktop\Assignment |
+      | Command(e.g.):        |
+      | :-------------------- |
+      | cd Desktop\Assignment |
 
       2nd step:
+      
             - clone the repository from GitHub to your local machine using this command
 
-                  | Command: |
-                  | :-------------------- |
-                  | git clone https://github.com/hongjiaherng/iHealth.git |
+      | Command: |
+      | :-------------------- |
+      | git clone https://github.com/hongjiaherng/iHealth.git |
 
-            - - You're done! Our iHealth repo has been available in your local machine
+            - You're done! Our iHealth repo has been available in your local machine
 
       3rd step:
+      
             - Now, let's try to add your name down below in your local machine then commit it and push it to the remote repo
             
-            | No.  | Steps                                              |
-            | :--- | :------------------------------------------------- |
-            | 1    | Add your name down below                           |
-            | 2    | Save and add your changes in your local machine    |
-            |      | **git add README.md**                              |
-            | 3    | Check your status of the file                      |
-            |      | **git status**                                     |
-            | 4    | Commit your file in your local machine             |
-            |      | **git commit -m "<Your commit message>"**          |
-            | 5    | Push your changes to the remote repo master branch |
-            |      | **git push -u origin master**                      |
-            
+      | No.  | Steps                                              |
+      | :--- | :------------------------------------------------- |
+      | 1    | Add your name down below                           |
+      | 2    | Save and add your changes in your local machine    |
+      |      | **git add README.md**                              |
+      | 3    | Check your status of the file                      |
+      |      | **git status**                                     |
+      | 4    | Commit your file in your local machine             |
+      |      | **git commit -m "<Your commit message>"**          |
+      | 5    | Push your changes to the remote repo master branch |
+      |      | **git push -u origin main**                        | 
+      
+      **Note that we use 'main' instead of 'master' because starting from Oct 1 2020, GitHub officially changed the name of default branch from 'master' to 'main'**
+      
                         
 
       Insert your name when you're done
