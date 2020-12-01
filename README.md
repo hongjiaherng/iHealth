@@ -58,8 +58,8 @@ Halo bros welcome here~
 
       Insert your name when you're done
       1. jiaherng
-      2.
-      3.
+      2. Desmond //So damn coool
+      3. Chai Nam Chi // very hard sia
       4.
       5.
 
