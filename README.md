@@ -57,11 +57,12 @@ Halo bros welcome here~
                         
 
       Insert your name when you're done
-      1. jiaherng
-      2. Desmond //So damn coool
-      3. Chai Nam Chi // very hard sia
-      4.
-      5.
+      | :----- |
+      | 1. jiaherng |
+      | 2. Desmond //So damn coool |
+      | 3. Chai Nam Chi // very hard sia |
+      | 4.        |
+      | 5.        |
 
 
       **- Actually we not neccessarily need to work with the confusing "command-line", we can merely use the GitHub user interface instead,**
