@@ -62,7 +62,7 @@ Halo bros welcome here~
       | 2. Desmond //So damn coool |
       | 3. Chai Nam Chi // very hard sia |
       | 4.   Boo Zhan Yi     |
-      | 5.        |
+      | 5. Chong Jun Yi // damn professional |
 
 
       **- Actually we not neccessarily need to work with the confusing "command-line", we can merely use the GitHub user interface instead,**
