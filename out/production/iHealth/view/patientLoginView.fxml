@@ -1,86 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #ECECE7;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.PatientLoginController">
-   <left>
-      <AnchorPane prefHeight="400.0" prefWidth="235.0" style="-fx-background-color: #3c3e42;" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fx:id="clinicIconImageView" fitHeight="150.0" fitWidth="200.0" layoutX="43.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/clinic-icon.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="iHealthLabel" layoutX="81.0" layoutY="268.0" text="iHealth" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="22.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </left>
-   <center>
-      <AnchorPane prefHeight="400.0" prefWidth="483.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="patientLoginLabel" layoutX="87.0" layoutY="51.0" text="Sign in to iHealth">
-               <font>
-                  <Font name="Arial" size="25.0" />
-               </font>
-            </Label>
-            <Label fx:id="usernameLabel" layoutX="58.0" layoutY="119.0" text="Username">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Label>
-            <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="143.0" layoutY="109.0" prefHeight="35.0" prefWidth="162.0" promptText="username" style="-fx-background-color: #f7f7d9;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <Glow />
-               </effect>
-            </TextField>
-            <Label fx:id="passwordLabel" layoutX="59.0" layoutY="172.0" text="Password">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Label>
-            <PasswordField fx:id="passwordField" alignment="CENTER" layoutX="143.0" layoutY="162.0" prefHeight="35.0" prefWidth="162.0" promptText="password" style="-fx-background-color: #f7f7d9;">
-               <effect>
-                  <Glow />
-               </effect>
-            </PasswordField>
-            <Button fx:id="loginButton" layoutX="147.0" layoutY="265.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #093bba;" text="Log in" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="registerButton" layoutX="97.0" layoutY="311.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="170.0" style="-fx-background-color: #008000;" text="Register an Account" textFill="WHITE">
-               <font>
-                  <Font name="Arial Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="adminPageButton" layoutX="280.0" layoutY="362.0" mnemonicParsing="false" style="-fx-background-color: #ECECE7;" text="Admin Login">
-               <font>
-                  <Font size="10.0" />
-               </font>
-            </Button>
-            <Label fx:id="errorLoginLabel" alignment="CENTER" layoutX="77.0" layoutY="219.0" prefHeight="30.0" prefWidth="210.0" style="-fx-background-color: #ffc0cb; -fx-background-radius: 10;" text="Incorrect username or password." textFill="#9e4244">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </center>
-</BorderPane>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="400.0" prefWidth="600.0">
+
+</AnchorPane>
