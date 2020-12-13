@@ -7,10 +7,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView layoutX="-6.0" layoutY="-33.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView layoutX="-20.0" layoutY="-33.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Pictures/background.jpg" />
          </image>
@@ -30,7 +29,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="179.0" layoutY="262.0" mnemonicParsing="false" text="Chack Appointment Details">
+      <Button layoutX="179.0" layoutY="262.0" mnemonicParsing="false" text="Check Appointment Details">
          <font>
             <Font size="18.0" />
          </font>
