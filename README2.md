@@ -18,6 +18,13 @@ Typing your own code along the tutorial videos will help alot!
   
   
   
+  
+  
+  
+  
+  
+  
+  
 I feel like this is a quite nice JavaFX tutorial playlist to follow along, if you have extra time, u can do so
 
 Else, after you all done the Java tutorial above, I will pick some key videos in it for you all to learn
