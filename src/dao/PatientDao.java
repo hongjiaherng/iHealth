@@ -1,34 +1,28 @@
-//package dao;
-//
-//import model.Patient;
-//
-//import java.sql.ResultSet;
-//import java.sql.SQLException;
-//import java.sql.Statement;
-//
-//public class PatientDao {
-//    public static Patient findPatient(String username, String password) {
-//        try {
-//            Statement connection = DBConnection.getConnection().createStatement();
-//            String patientQuery = "SELECT * FROM patient WHERE username='" + username + "' AND password='" + password + "';" ;
-//            ResultSet patientResult = connection.executeQuery(patientQuery);
-//
-//            if(patientResult.next()) {
-//                try{
-//                    Patient currentUser = new Patient(patientResult.getInt("userID"), patientResult.getString("username"));
-//                    connection.close();
-//                    return currentUser;
-//                } catch(Exception e) {
-//                    System.err.println(e.getLocalizedMessage());
-//                    return null;
-//                }
-//            } else {
-//                return null;
-//            }
-//        }
-//        catch(SQLException e) {
-//            System.err.println(e.getLocalizedMessage());
-//            return null;
-//        }
-//    }
-//}
+package dao;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import model.Patient;
+import utils.DBConnection;
+
+import static com.mongodb.client.model.Filters.and;
+import static com.mongodb.client.model.Filters.eq;
+
+public class PatientDao {
+
+    public static Patient findPatient(String username, String password) {
+
+        MongoDatabase ihealthDB = DBConnection.getConnection();
+        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
+
+        Patient patient = patientsCollection.find(and(eq("username", username), eq("password", password))).first();
+        System.out.println("Patient found:\t" + patient);
+
+        if (patient == null) {
+            return null;
+        }
+
+        return patient;
+
+    }
+}

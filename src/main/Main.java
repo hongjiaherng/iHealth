@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import utils.DBConnection;
 
 public class Main extends Application {
 
@@ -19,7 +20,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        DBConnection.startConnection();
         launch(args);
+        DBConnection.stopConnection();
     }
 
 }
