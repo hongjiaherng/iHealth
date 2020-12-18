@@ -2,7 +2,7 @@ package dao;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import model.Patient;
+import models.Patient;
 import utils.DBConnection;
 
 import static com.mongodb.client.model.Filters.and;

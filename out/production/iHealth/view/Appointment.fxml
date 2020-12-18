@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView layoutX="-1.0" layoutY="-29.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Pictures/background.jpg" />
+         </image>
+      </ImageView>
+      <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Text>
+      <TextField layoutX="28.0" layoutY="105.0" />
+      <Text layoutX="28.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REASON FOR VISIT" />
+      <Button layoutX="164.0" layoutY="391.0" mnemonicParsing="false" text="CANCEL" />
+      <Button layoutX="348.0" layoutY="391.0" mnemonicParsing="false" text="BOOK NOW" />
+      <MenuButton layoutX="299.0" layoutY="82.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Select Year">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Monday" />
+            <MenuItem mnemonicParsing="false" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" text="Thursday" />
+            <MenuItem mnemonicParsing="false" text="Friday" />
+            <MenuItem mnemonicParsing="false" text="Saturday" />
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="299.0" layoutY="131.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Select Month">
+         <items>
+            <MenuItem mnemonicParsing="false" text="Monday" />
+            <MenuItem mnemonicParsing="false" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" text="Thursday" />
+            <MenuItem mnemonicParsing="false" text="Friday" />
+            <MenuItem mnemonicParsing="false" text="Saturday" />
+         </items>
+      </MenuButton>
+      <MenuButton layoutX="299.0" layoutY="187.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Select Day">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Monday" />
+          <MenuItem mnemonicParsing="false" text="Tuesday" />
+            <MenuItem mnemonicParsing="false" text="Wednesday" />
+            <MenuItem mnemonicParsing="false" text="Thursday" />
+            <MenuItem mnemonicParsing="false" text="Friday" />
+            <MenuItem mnemonicParsing="false" text="Saturday" />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="299.0" layoutY="242.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Working Time">
+        <items>
+          <MenuItem mnemonicParsing="false" text="8.00 a.m. - 8.00 p.m." />
+        </items>
+      </MenuButton>
+      <MenuButton layoutX="299.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" text="Select Time">
+         <items>
+            <MenuItem mnemonicParsing="false" text="8.00 a.m." />
+            <MenuItem mnemonicParsing="false" text="9.00 a.m." />
+            <MenuItem mnemonicParsing="false" text="10.00 a.m." />
+            <MenuItem mnemonicParsing="false" text="11.00 a.m." />
+            <MenuItem mnemonicParsing="false" text="1.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="2.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="3.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="4.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="5.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="6.00 p.m." />
+            <MenuItem mnemonicParsing="false" text="7.00 p.m." />
+         </items>
+      </MenuButton>
+   </children>
+</AnchorPane>

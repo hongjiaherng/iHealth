@@ -12,7 +12,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/patientLoginView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("iHealth");
         primaryStage.setScene(new Scene(root, 600, 400));

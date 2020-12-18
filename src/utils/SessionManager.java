@@ -1,6 +1,6 @@
 package utils;
 
-import model.Patient;
+import models.Patient;
 
 public class SessionManager {
     private static Patient currentUser = null;
