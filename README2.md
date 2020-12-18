@@ -13,3 +13,14 @@ Typing your own code along the tutorial videos will help alot!
   
 4. Constructor method (12 mins)
   https://www.youtube.com/watch?v=G1Iln3PSrUg&list=PL59LTecnGM1Pr-IoQS2JlTnEXOV28-KNg&index=4
+  
+  
+  
+  
+  
+I feel like this is a quite nice JavaFX tutorial playlist to follow along, if you have extra time, u can do so
+
+Else, after you all done the Java tutorial above, I will pick some key videos in it for you all to learn
+
+1. JavaFX tutorial playlist
+  https://www.youtube.com/playlist?list=PLfu_Bpi_zcDNYL6171Op3S1ABtuyFV7Nr
