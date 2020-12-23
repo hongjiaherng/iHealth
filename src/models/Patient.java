@@ -1,9 +1,6 @@
 package models;
 
-import org.bson.codecs.pojo.annotations.BsonProperty;
 import org.bson.types.ObjectId;
-
-import java.util.Date;
 import java.util.Objects;
 
 public class Patient {
@@ -13,25 +10,19 @@ public class Patient {
     private ObjectId id;
     private String username;
     private String password;
+    private String name;
+    private String icNo;
     private String email;
-    @BsonProperty(value = "first_name")
-    private String firstName;
-    @BsonProperty(value = "last_name")
-    private String lastName;
-    private Date dob;
+    private String phoneNum;
 
     // Getter and setter
-    public ObjectId getId() {
-        return id;
-    }
-
     public Patient setId(ObjectId id) {
         this.id = id;
         return this;
     }
 
-    public String getUsername() {
-        return username;
+    public ObjectId getId() {
+        return id;
     }
 
     public Patient setUsername(String username) {
@@ -39,8 +30,8 @@ public class Patient {
         return this;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUsername() {
+        return username;
     }
 
     public Patient setPassword(String password) {
@@ -48,8 +39,26 @@ public class Patient {
         return this;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
+    }
+
+    public Patient setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Patient setIcNo(String icNo) {
+        this.icNo = icNo;
+        return this;
+    }
+
+    public String getIcNo() {
+        return icNo;
     }
 
     public Patient setEmail(String email) {
@@ -57,45 +66,30 @@ public class Patient {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getEmail() {
+        return email;
     }
 
-    public Patient setFirstName(String firstName) {
-        this.firstName = firstName;
+    public Patient setPhoneNum(String phoneNum) {
+        this.phoneNum = phoneNum;
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Patient setLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public Patient setDob(Date dob) {
-        this.dob = dob;
-        return this;
+    public String getPhoneNum() {
+        return phoneNum;
     }
 
     // toString()
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Patient{");
-        sb.append("id=").append(id);
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
-        sb.append(", email=").append(email);
-        sb.append(", first_name=").append(firstName).append(", last_name=").append(lastName);
-        sb.append(", dob=").append(dob);
-        sb.append("}");
-        return sb.toString();
+        return "Patient{" + "id=" + id +
+                ", username=" + username +
+                ", password=" + password +
+                ", name=" + name +
+                ", icNo=" + icNo +
+                ", email=" + email +
+                ", phoneNum=" + phoneNum +
+                "}";
     }
 
     // equals()
@@ -109,14 +103,14 @@ public class Patient {
         }
         Patient patient = (Patient) o;
         return Objects.equals(id, patient.id) && Objects.equals(username, patient.username)
-                && Objects.equals(password, patient.password) && Objects.equals(email, patient.email)
-                && Objects.equals(firstName, patient.firstName) && Objects.equals(lastName, patient.lastName)
-                && Objects.equals(dob, patient.dob);
+                && Objects.equals(password, patient.password) && Objects.equals(name, patient.name)
+                && Objects.equals(icNo, patient.icNo) && Objects.equals(email, patient.email)
+                && Objects.equals(phoneNum, patient.phoneNum);
     }
 
     // hashcode()
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, email, firstName, lastName, dob);
+        return Objects.hash(id, username, password, name, icNo, email, phoneNum);
     }
 }

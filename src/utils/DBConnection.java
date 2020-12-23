@@ -16,11 +16,11 @@ import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 public class DBConnection {
 
-    private static ConnectionString connectionString = new ConnectionString("mongodb+srv://jherng630:jherng630@cluster0.cyk1y.mongodb.net/ihealth_db?retryWrites=true&w=majority");
+    private static final ConnectionString connectionString = new ConnectionString("mongodb+srv://jherng630:jherng630@cluster0.cyk1y.mongodb.net/ihealth_db?retryWrites=true&w=majority");
     private static MongoClient mongoClient = null;
     private static MongoDatabase ihealthDB = null;
 
-    public static MongoDatabase startConnection() {
+    public static void startConnection() {
 
         Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
         mongoLogger.setLevel(Level.OFF);
@@ -40,7 +40,6 @@ public class DBConnection {
         } catch (Exception e) {
             System.out.println("Connection to MongoDB failed.");
         }
-        return ihealthDB;
     }
 
     public static void stopConnection() {

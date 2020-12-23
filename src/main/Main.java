@@ -11,18 +11,27 @@ import utils.DBConnection;
 public class Main extends Application {
 
     @Override
+    public void init() {
+        DBConnection.startConnection();
+    }
+
+    @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         primaryStage.initStyle(StageStyle.DECORATED);
-        primaryStage.setTitle("iHealth");
+        primaryStage.setTitle("iHealth v0");
         primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-    public static void main(String[] args) {
-        DBConnection.startConnection();
-        launch(args);
+    @Override
+    public void stop() {
         DBConnection.stopConnection();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 
 }

@@ -1,109 +1,74 @@
 package controllers;
 
 import dao.PatientDao;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import models.Patient;
 import utils.Logger;
 import utils.SessionManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-
-
-public class PatientLoginController implements Initializable {
+public class PatientLoginController {
 
     @FXML
-    private Label usernameLabel;
-    @FXML
-    private Label passwordLabel;
-    @FXML
-    private Label patientLoginLabel;
-    @FXML
-    private Label iHealthLabel;
-    @FXML
-    private Label errorLoginLabel;
-    @FXML
-    private ImageView clinicIconImageView;
+    private Label loginErrorLabel;
     @FXML
     private TextField usernameTextField;
     @FXML
     private PasswordField passwordField;
-    @FXML
-    private Button loginButton;
-    @FXML
-    private Button registerButton;
-    @FXML
-    private Button adminPageButton;
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        File clinicIconFile = new File("src/images/clinic-icon.png");
-        Image clinicIconImage = new Image(clinicIconFile.toURI().toString());
-        clinicIconImageView.setImage(clinicIconImage);
-
-        errorLoginLabel.setVisible(false);
-
-        loginButton.setDefaultButton(true);
-    }
 
     @FXML
     public void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
-        if (!validateLogin()) {
-            errorLoginLabel.setVisible(true);
-            System.out.println("Login failed");
+        if (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
+            loginErrorLabel.setText("Username and Password cannot be empty!");
+        } else if (!validateLogin()) {
+            loginErrorLabel.setText("Invalid Username or Password");
         } else {
-            errorLoginLabel.setVisible(false);
-            System.out.println("Login successfully");
+            loginErrorLabel.setText("");
 
-            //        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("/view/patientDashboardView.fxml"));
-//        Parent addProductParent = loader.load();
-//        Scene addProductScene = new Scene(addProductParent);
-//        PatientDashboardController controller = loader.getController();
-//        controller.checkForAppointments();
-//        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-//        window.setScene(addProductScene);
-//        window.show();
+            // Switch to patient dashboard here
+            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+            Scene patientMainPageScene = new Scene(patientMainPageRoot);
+            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // obtain the current stage (in the patientloginview)
+            appStage.setScene(patientMainPageScene); // set the scene of the obtained stage into the new scene
+            appStage.show();
         }
     }
 
     @FXML
-    public void registerButtonOnAction(ActionEvent event) {
-
+    public void createAccButtonOnAction(ActionEvent actionEvent) throws IOException {
+        // Switch to account registration here
+        Parent accountRegisterRoot = FXMLLoader.load(getClass().getResource("../views/patientRegistrationView.fxml"));
+        Scene accountRegisterScene = new Scene(accountRegisterRoot);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(accountRegisterScene);
+        appStage.show();
     }
 
-
-
     private boolean validateLogin() throws IOException {
-        String username = this.usernameTextField.getText();
-        String password = this.passwordField.getText();
+        String username = usernameTextField.getText();
+        String password = passwordField.getText();
 
-        if (username.isEmpty() || password.isEmpty()) {
-            this.errorLoginLabel.setText("Username and password are empty.");
-            return false;
-        }
+        Patient validatedPatient = PatientDao.findPatient(username, password);
 
-        Patient validated = PatientDao.findPatient(username, password);
-
-        if (validated == null) {
+        if (validatedPatient == null) {
             Logger.loginFailure(username);
             return false;
         }
 
-        SessionManager.setSessionUser(validated);
+        SessionManager.setSessionUser(validatedPatient);
         Logger.loginSuccess(username);
         return true;
     }
+
 }

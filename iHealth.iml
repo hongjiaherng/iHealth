@@ -7,7 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="bson-3.11.0" level="project" />
+    <orderEntry type="library" name="javafx-15" level="project" />
+    <orderEntry type="library" name="mongodb-3.11.0" level="project" />
   </component>
 </module>
