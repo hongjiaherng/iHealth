@@ -15,14 +15,14 @@ public class Main extends Application {
         DBConnection.startConnection();
     }
 
-    @Override
+    @Override // node
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("iHealth v0");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
-        primaryStage.show();
+        primaryStage.show(); // compulsory
     }
 
     @Override

@@ -13,7 +13,7 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientLoginController">
    <children>
       <TextField fx:id="usernameTextField" layoutX="346.0" layoutY="207.0" promptText="Username" />
-      <Button fx:id="loginButton" alignment="CENTER" defaultButton="true" layoutX="398.0" layoutY="334.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" style="-fx-background-color: #3385FF;" text="Login" textFill="WHITE">
+      <Button alignment="CENTER" defaultButton="true" layoutX="398.0" layoutY="334.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" style="-fx-background-color: #3385FF;" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

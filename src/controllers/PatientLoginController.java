@@ -59,7 +59,7 @@ public class PatientLoginController {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
 
-        Patient validatedPatient = PatientDao.findPatient(username, password);
+        Patient validatedPatient = PatientDao.findPatient(username, password); // data access object
 
         if (validatedPatient == null) {
             Logger.loginFailure(username);
