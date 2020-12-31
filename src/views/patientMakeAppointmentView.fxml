@@ -32,12 +32,9 @@
          </font></Button>
       <MenuButton layoutX="354.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Year" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Monday" />
-            <MenuItem mnemonicParsing="false" text="Tuesday" />
-            <MenuItem mnemonicParsing="false" text="Wednesday" />
-            <MenuItem mnemonicParsing="false" text="Thursday" />
-            <MenuItem mnemonicParsing="false" text="Friday" />
-            <MenuItem mnemonicParsing="false" text="Saturday" />
+            <MenuItem mnemonicParsing="false" text="2020" />
+            <MenuItem mnemonicParsing="false" text="2019" />
+            <MenuItem mnemonicParsing="false" text="2018" />
          </items>
          <font>
             <Font name="System Bold" size="14.0" />
@@ -45,12 +42,18 @@
       </MenuButton>
       <MenuButton layoutX="354.0" layoutY="152.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Month" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Monday" />
-            <MenuItem mnemonicParsing="false" text="Tuesday" />
-            <MenuItem mnemonicParsing="false" text="Wednesday" />
-            <MenuItem mnemonicParsing="false" text="Thursday" />
-            <MenuItem mnemonicParsing="false" text="Friday" />
-            <MenuItem mnemonicParsing="false" text="Saturday" />
+            <MenuItem mnemonicParsing="false" text="January" />
+            <MenuItem mnemonicParsing="false" text="February" />
+            <MenuItem mnemonicParsing="false" text="March" />
+            <MenuItem mnemonicParsing="false" text="April" />
+            <MenuItem mnemonicParsing="false" text="May" />
+            <MenuItem mnemonicParsing="false" text="June" />
+            <MenuItem mnemonicParsing="false" text="July" />
+            <MenuItem mnemonicParsing="false" text="Auguest" />
+            <MenuItem mnemonicParsing="false" text="September" />
+            <MenuItem mnemonicParsing="false" text="October" />
+            <MenuItem mnemonicParsing="false" text="November" />
+            <MenuItem mnemonicParsing="false" text="December" />
          </items>
          <font>
             <Font name="System Bold" size="14.0" />
