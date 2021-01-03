@@ -18,49 +18,20 @@
             <Font name="Arial Black" size="36.0" />
          </font>
       </Text>
-      <TextField layoutX="98.0" layoutY="135.0" style="-fx-background-color: #E0FBFF;" />
+      <TextField fx:id="reasontovisit" layoutX="90.0" layoutY="135.0" onAction="#gettext" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #E0FBFF;" />
       <Text fontSmoothingType="LCD" layoutX="103.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Visit" wrappingWidth="159.99999999999994">
          <font>
             <Font name="Arial Black" size="14.0" />
          </font></Text>
-      <Button layoutX="66.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Cancel" textFill="WHITE">
+      <Button layoutX="66.0" layoutY="339.0" mnemonicParsing="false" onAction="#cancelonAction" style="-fx-background-color: #3385FF;" text="Cancel" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="191.0" layoutY="339.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Book Now" textFill="WHITE">
+      <Button layoutX="191.0" layoutY="339.0" mnemonicParsing="false" onAction="#booknowOnAction" style="-fx-background-color: #3385FF;" text="Book Now" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <MenuButton layoutX="354.0" layoutY="103.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Year" textFill="WHITE">
-         <items>
-            <MenuItem mnemonicParsing="false" text="2020" />
-            <MenuItem mnemonicParsing="false" text="2019" />
-            <MenuItem mnemonicParsing="false" text="2018" />
-         </items>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </MenuButton>
-      <MenuButton layoutX="354.0" layoutY="152.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Month" textFill="WHITE">
-         <items>
-            <MenuItem mnemonicParsing="false" text="January" />
-            <MenuItem mnemonicParsing="false" text="February" />
-            <MenuItem mnemonicParsing="false" text="March" />
-            <MenuItem mnemonicParsing="false" text="April" />
-            <MenuItem mnemonicParsing="false" text="May" />
-            <MenuItem mnemonicParsing="false" text="June" />
-            <MenuItem mnemonicParsing="false" text="July" />
-            <MenuItem mnemonicParsing="false" text="Auguest" />
-            <MenuItem mnemonicParsing="false" text="September" />
-            <MenuItem mnemonicParsing="false" text="October" />
-            <MenuItem mnemonicParsing="false" text="November" />
-            <MenuItem mnemonicParsing="false" text="December" />
-         </items>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </MenuButton>
-      <MenuButton layoutX="354.0" layoutY="249.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Working Time" textFill="WHITE">
+      <MenuButton layoutX="341.0" layoutY="133.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Working Time" textFill="WHITE">
         <items>
           <MenuItem mnemonicParsing="false" text="8.00 a.m. - 8.00 p.m." />
         </items>
@@ -68,19 +39,19 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </MenuButton>
-      <MenuButton layoutX="354.0" layoutY="295.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Time" textFill="WHITE">
+      <MenuButton fx:id="timeselect" layoutX="341.0" layoutY="207.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Time" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="8.00 a.m." />
-            <MenuItem mnemonicParsing="false" text="9.00 a.m." />
-            <MenuItem mnemonicParsing="false" text="10.00 a.m." />
-            <MenuItem mnemonicParsing="false" text="11.00 a.m." />
-            <MenuItem mnemonicParsing="false" text="1.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="2.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="3.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="4.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="5.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="6.00 p.m." />
-            <MenuItem mnemonicParsing="false" text="7.00 p.m." />
+            <MenuItem id="8am" mnemonicParsing="false" onAction="#time8" text="8.00 a.m." />
+            <MenuItem id="9am" mnemonicParsing="false" onAction="#time9" text="9.00 a.m." />
+            <MenuItem id="10am" mnemonicParsing="false" onAction="#time10" text="10.00 a.m." />
+            <MenuItem id="11am" mnemonicParsing="false" onAction="#time11" text="11.00 a.m." />
+            <MenuItem id="1pm" mnemonicParsing="false" onAction="#time1" text="1.00 p.m." />
+            <MenuItem id="2pm" mnemonicParsing="false" onAction="#time2" text="2.00 p.m." />
+            <MenuItem id="3pm" mnemonicParsing="false" onAction="#time3" text="3.00 p.m." />
+            <MenuItem id="4pm" mnemonicParsing="false" onAction="#time4" text="4.00 p.m." />
+            <MenuItem id="5pm" mnemonicParsing="false" onAction="#time5" text="5.00 p.m." />
+            <MenuItem id="6pm" mnemonicParsing="false" onAction="#time6" text="6.00 p.m." />
+            <MenuItem id="7pm" mnemonicParsing="false" onAction="#time7" text="7.00 p.m." />
          </items>
          <font>
             <Font name="System Bold" size="14.0" />
@@ -91,6 +62,6 @@
             <Image url="@../res/images/date.png" />
          </image>
       </ImageView>
-      <DatePicker layoutX="354.0" layoutY="200.0" prefHeight="30.0" prefWidth="190.0" />
+      <DatePicker fx:id="datepicker" layoutX="90.0" layoutY="207.0" onAction="#datepicker" prefHeight="30.0" prefWidth="190.0" />
    </children>
 </AnchorPane>
