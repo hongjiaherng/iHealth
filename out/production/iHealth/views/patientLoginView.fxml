@@ -7,73 +7,73 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientLoginController">
-   <children>
-      <TextField fx:id="usernameTextField" layoutX="346.0" layoutY="207.0" promptText="Username" />
-      <Button alignment="CENTER" defaultButton="true" layoutX="398.0" layoutY="334.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="25.0" style="-fx-background-color: #3385FF;" text="Login" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button alignment="CENTER" layoutX="29.0" layoutY="354.0" mnemonicParsing="false" onAction="#createAccButtonOnAction" style="-fx-background-color: #3385FF;" text="Create Account" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="31.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: transparent;" text="Admin Login">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Button>
-      <PasswordField fx:id="passwordField" layoutX="346.0" layoutY="262.0" promptText="Password" />
-      <Label fx:id="loginErrorLabel" alignment="CENTER" layoutX="289.0" layoutY="299.0" prefHeight="25.0" prefWidth="263.0" textFill="RED" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/hospital.png" />
-         </image>
-      </ImageView>
-      <Text fontSmoothingType="LCD" layoutX="42.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="#Your Personal Healthcare">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-      </Text>
-      <Text fontSmoothingType="LCD" layoutX="89.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="iHealth" textOrigin="BOTTOM" wrappingWidth="100.52935791015625">
-         <font>
-            <Font name="Bauhaus 93" size="28.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="140.0" fitWidth="190.0" layoutX="356.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/patient.png" />
-         </image>
-      </ImageView>
-      <Text fill="#210c62" fontSmoothingType="LCD" layoutX="178.0" layoutY="378.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Do not have account?" textOrigin="BOTTOM" wrappingWidth="176.0000000000001">
-         <font>
-            <Font name="Calibri Bold" size="16.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="155.0" layoutY="358.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/baseline_keyboard_backspace_black_18dp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/baseline_account_circle_black_18dp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/baseline_https_black_18dp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/login.png" />
-         </image>
-      </ImageView>
-   </children>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientLoginController">
+   <TextField fx:id="usernameTextField" layoutX="346.0" layoutY="182.0" promptText="Username"/>
+   <PasswordField fx:id="passwordField" layoutX="346.0" layoutY="224.0" promptText="Password"/>
+   <Button alignment="CENTER" defaultButton="true" layoutX="359.0" layoutY="284.0" mnemonicParsing="false"
+           onAction="#loginButtonOnAction" prefHeight="30.0" prefWidth="122.0" style="-fx-background-color: #3385FF;"
+           text="Login" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0"/>
+      </font>
+   </Button>
+   <Button alignment="CENTER" layoutX="360.0" layoutY="341.0" mnemonicParsing="false"
+           onAction="#createAccButtonOnAction" prefHeight="17.0" prefWidth="121.0"
+           style="-fx-background-color: #34a34c;" text="Create Account" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="14.0"/>
+      </font>
+   </Button>
+   <Button layoutX="-6.0" layoutY="368.0" mnemonicParsing="false" onAction="#adminLoginButtonOnAction" prefWidth="130.0"
+           style="-fx-background-color: transparent;" text="Admin Login" textFill="#0c005c">
+      <font>
+         <Font name="System Italic" size="13.0"/>
+      </font>
+      <graphic>
+         <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../res/images/login.png"/>
+         </ImageView>
+      </graphic>
+   </Button>
+   <Label fx:id="loginErrorLabel" alignment="CENTER" layoutX="289.0" layoutY="259.0" prefHeight="17.0" prefWidth="263.0"
+          textFill="RED"/>
+   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../res/images/hospital.png"/>
+   </ImageView>
+   <Text fontSmoothingType="LCD" layoutX="42.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="#Your Personal Healthcare">
+      <font>
+         <Font name="Arial Bold" size="15.0"/>
+      </font>
+   </Text>
+   <Text fontSmoothingType="LCD" layoutX="89.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="iHealth"
+         textOrigin="BOTTOM" wrappingWidth="100.52935791015625">
+      <font>
+         <Font name="Bauhaus 93" size="28.0"/>
+      </font>
+   </Text>
+   <ImageView fitHeight="121.0" fitWidth="115.0" layoutX="362.0" layoutY="59.0" pickOnBounds="true"
+              preserveRatio="true">
+      <Image url="@../res/images/patient.png"/>
+   </ImageView>
+   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="181.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../res/images/baseline_account_circle_black_18dp.png"/>
+   </ImageView>
+   <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="222.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../res/images/baseline_https_black_18dp.png"/>
+   </ImageView>
+   <Label layoutX="414.0" layoutY="319.0" text="or" textFill="#878787"/>
+   <Line endX="-39.0" layoutX="445.0" layoutY="329.0" startX="-85.0" stroke="#878787"/>
+   <Line endX="-46.0" layoutX="526.0" layoutY="329.0" startX="-91.0" stroke="#878787"/>
+   <Label layoutX="340.0" layoutY="23.0" text="Patient Login">
+      <font>
+         <Font name="Arial Bold" size="25.0"/>
+      </font>
+   </Label>
 </Pane>

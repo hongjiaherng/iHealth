@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="argon2-jvm-2.7">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/mkammerer/argon2-jvm/2.7/argon2-jvm-2.7.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

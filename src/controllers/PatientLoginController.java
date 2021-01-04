@@ -1,11 +1,13 @@
 package controllers;
 
 import dao.PatientDao;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import models.Patient;
 import utils.Logger;
 import utils.SessionManager;
@@ -36,12 +38,23 @@ public class PatientLoginController {
         } else {
             loginErrorLabel.setText("");
 
-            // Switch to patient dashboard here
-            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
-            Scene patientMainPageScene = new Scene(patientMainPageRoot);
-            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // obtain the current stage (in the patientloginview)
-            appStage.setScene(patientMainPageScene); // set the scene of the obtained stage into the new scene
-            appStage.show();
+            PauseTransition delay = new PauseTransition(Duration.millis(1000));
+            delay.setOnFinished(
+                    e -> {
+                        // Back to login page
+                        try {
+                            // Switch to patient dashboard here
+                            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+                            Scene patientMainPageScene = new Scene(patientMainPageRoot);
+                            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // obtain the current stage (in the patientloginview)
+                            appStage.setScene(patientMainPageScene); // set the scene of the obtained stage into the new scene
+                            appStage.show();
+                        } catch (IOException ioException) {
+                            System.out.println("Unable to load FXML file");
+                        }
+                    }
+            );
+            delay.play();
         }
     }
 
@@ -71,4 +84,11 @@ public class PatientLoginController {
         return true;
     }
 
+    public void adminLoginButtonOnAction(ActionEvent actionEvent) throws IOException {
+        Parent adminLoginRoot = FXMLLoader.load(getClass().getResource("../views/adminLoginView.fxml"));
+        Scene adminLoginScene = new Scene(adminLoginRoot);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(adminLoginScene);
+        appStage.show();
+    }
 }

@@ -1,32 +1,52 @@
 package controllers;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Text;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import utils.SessionManager;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class PatientMainPageController {
+public class PatientMainPageController implements Initializable {
 
-    public Text welcomeMsgText;
+    @FXML
+    private Label welcomeLabel;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        welcomeLabel.setText("Welcome, " + SessionManager.getSessionUser().getName() + "!");
+    }
 
     public void logoutOnAction(ActionEvent actionEvent) throws IOException {
-        Parent accountRegisterRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
-        Scene accountRegisterScene = new Scene(accountRegisterRoot);
+        Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
+        Scene patientLoginScene = new Scene(patientLoginRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        appStage.setScene(accountRegisterScene);
+        appStage.setScene(patientLoginScene);
         appStage.show();
     }
 
-    public void makeReservationOnAction(ActionEvent actionEvent) {
-
+    public void makeReservationOnAction(MouseEvent actionEvent) throws IOException {
+        Parent makeAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMakeAppointmentView.fxml"));
+        Scene makeAppointmentScene = new Scene(makeAppointmentRoot);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(makeAppointmentScene);
+        appStage.show();
     }
 
-    public void checkDetailsOnAction(ActionEvent actionEvent) {
-
+    public void checkDetailsOnAction(MouseEvent actionEvent) throws IOException {
+        Parent checkDetailsRoot = FXMLLoader.load(getClass().getResource("../views/patientCheckAppointmentView.fxml"));
+        Scene checkDetailsScene = new Scene(checkDetailsRoot);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(checkDetailsScene);
+        appStage.show();
     }
 }
