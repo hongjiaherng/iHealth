@@ -4,10 +4,11 @@ import org.bson.types.ObjectId;
 import java.util.Objects;
 
 public class Patient {
+    private static ObjectId id;
 
     // username, password, name, email address, date of birth
 
-    private ObjectId id;
+    //private ObjectId id;
     private String username;
     private String password;
     private String name;
@@ -21,7 +22,7 @@ public class Patient {
         return this;
     }
 
-    public ObjectId getId() {
+    public static ObjectId getId() {
         return id;
     }
 
