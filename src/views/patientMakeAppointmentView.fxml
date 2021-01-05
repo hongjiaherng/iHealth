@@ -11,14 +11,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.patientMakeAppointmentController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PatientMakeAppointmentController">
    <children>
       <Text fontSmoothingType="LCD" layoutX="98.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Book Appointment">
          <font>
             <Font name="Arial Black" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="reasontovisit" layoutX="90.0" layoutY="135.0" onAction="#gettext" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #E0FBFF;" />
+      <TextField fx:id="reasontovisit" layoutX="90.0" layoutY="135.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #E0FBFF;" />
       <Text fontSmoothingType="LCD" layoutX="103.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Visit" wrappingWidth="159.99999999999994">
          <font>
             <Font name="Arial Black" size="14.0" />

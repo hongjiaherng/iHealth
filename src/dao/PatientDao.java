@@ -2,15 +2,18 @@ package dao;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.FindOneAndReplaceOptions;
+import com.mongodb.client.model.ReturnDocument;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import models.Patient;
+import org.bson.Document;
 import utils.DBConnection;
+import utils.SessionManager;
 
 import java.util.List;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.or;
+import static com.mongodb.client.model.Filters.*;
 
 public class PatientDao {
 
@@ -84,4 +87,62 @@ public class PatientDao {
         }
 
     }
+
+    public static Patient findbook(String date, String time) {
+
+        if (ihealthDB == null) {
+            System.out.println("Connection to MongoDB to find book date is not properly set (PatientDao)");
+            return null;
+        }
+
+        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
+        Patient bookdate = patientsCollection.find(and(eq("date", date), eq("time", time))).first();
+
+        return bookdate;
+    }
+
+    public static Patient booksucessfull(String date, String time, String reason) {
+
+        if (ihealthDB == null) {
+            System.out.println("Connection to MongoDB to save booked date is not properly set (bookDao)");
+        }
+
+        String username = SessionManager.getSessionUser().getUsername();
+        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
+        Patient patient = patientsCollection.find((eq("username", username))).first();
+
+        if (patient == null){
+            System.out.println("The patients did not exits");
+            return null;
+        }
+        else {
+            System.out.println("Patients exits");
+
+            patient.setBookedTime(time).setConfirmDate(date).setReason(reason);
+
+            Document filterByUsername = new Document("username", patient.getUsername());
+            FindOneAndReplaceOptions returnAfterReplace = new FindOneAndReplaceOptions().returnDocument(ReturnDocument.AFTER);
+            Patient updatedPatient = patientsCollection.findOneAndReplace(filterByUsername, patient, returnAfterReplace);
+            System.out.println("Patient replaced : " + updatedPatient);
+            return updatedPatient;
+
+//            Bson updateDate = new Document("date", date);
+//            Bson updatedate = new Document("$set", updateDate);
+//            collection.updateOne(found, updatedate);
+//            System.out.println("Date updated");
+//
+//            Bson updateTime = new Document("time", time);
+//            Bson updatetime = new Document("$set", updateTime);
+//            collection.updateOne(found, updatetime);
+//            System.out.println("Time updated");
+//
+//            Bson updateReason = new Document("reason", reason);
+//            Bson updatereason = new Document("$set", updateReason);
+//            collection.updateOne(found, updatereason);
+//            System.out.println("Reason updated");
+        }
+    }
 }
+
+
+

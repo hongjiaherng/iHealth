@@ -8,13 +8,18 @@ public class Patient {
 
     // username, password, name, email address, date of birth
 
-//    private ObjectId id;
+    //    private ObjectId id;
     private String username;
     private String password;
     private String name;
     private String icNo;
     private String email;
     private String phoneNum;
+    private String reason;
+    private String confirmDate;
+    private String bookedTime;
+    private String remarks;
+
 
     // Getter and setter
     public Patient setId(ObjectId id) {
@@ -79,6 +84,43 @@ public class Patient {
     public String getPhoneNum() {
         return phoneNum;
     }
+
+    public Patient setReason(String reason) {
+        this.reason = reason;
+        return this;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public Patient setConfirmDate(String confirmDate) {
+        this.confirmDate = confirmDate;
+        return this;
+    }
+
+    public String getConfirmDate() {
+        return confirmDate;
+    }
+
+    public Patient setBookedTime(String bookedTime) {
+        this.bookedTime = bookedTime;
+        return this;
+    }
+
+    public String getBookedTime() {
+        return bookedTime;
+    }
+
+    public Patient setRemarks(String remarks) {
+        this.remarks = remarks;
+        return this;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
+
 
     // toString()
     @Override

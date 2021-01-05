@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="mongodb-driver-sync-3.11.0">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/mongodb-driver-sync/3.11.0/mongodb-driver-sync-3.11.0.jar!/" />
-      <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/mongodb-driver-core/3.11.0/mongodb-driver-core-3.11.0.jar!/" />
-      <root url="jar://$MAVEN_REPOSITORY$/org/mongodb/bson/3.11.0/bson-3.11.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mongodb-20201227T151942Z-001/mongodb/mongodb-driver-sync/3.11.0/mongodb-driver-sync-3.11.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mongodb-20201227T151942Z-001/mongodb/mongodb-driver-core/3.11.0/mongodb-driver-core-3.11.0.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/mongodb-20201227T151942Z-001/mongodb/bson/3.11.0/bson-3.11.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

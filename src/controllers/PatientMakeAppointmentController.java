@@ -1,6 +1,7 @@
 package controllers;
 
 
+import dao.PatientDao;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -11,10 +12,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.io.IOException;
-import dao.bookDAO;
-import models.book;
+import models.Patient;
 
-public class patientMakeAppointmentController{
+
+public class PatientMakeAppointmentController {
 
     private String date,time, reason;
 
@@ -89,15 +90,13 @@ public class patientMakeAppointmentController{
         unsuceccfull();
     }
 
-    @FXML
-    public void gettext(){
-        reason = reasontovisit.getText();
-    }
 
     @FXML
     public void booknowOnAction(ActionEvent actionEvent) throws IOException{
 
-        book validatedDate = bookDAO.findbook(date, time); // data access object
+        reason = reasontovisit.getText();
+
+        Patient validatedDate = PatientDao.findbook(date, time); // data access object
 
         if (validatedDate == null){
             sucessbook();
@@ -108,13 +107,14 @@ public class patientMakeAppointmentController{
            appStage.show();
 
         }
-        else
+        else {
             unsuceccfull();
-        System.out.println("Date booked by other ");
+            System.out.println("Date booked by other ");
+        }
     }
 
     public void sucessbook() {
-       bookDAO.booksucessfull(date, time, reason);
+        Patient newPatient = PatientDao.booksucessfull(date, time, reason);
         System.out.println("Book successfully");
     }
 

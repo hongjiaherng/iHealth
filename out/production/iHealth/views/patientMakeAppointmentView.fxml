@@ -18,7 +18,7 @@
             <Font name="Arial Black" size="36.0" />
          </font>
       </Text>
-      <TextField fx:id="reasontovisit" layoutX="90.0" layoutY="135.0" onAction="#gettext" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #E0FBFF;" />
+      <TextField fx:id="reasontovisit" layoutX="90.0" layoutY="135.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #E0FBFF;" />
       <Text fontSmoothingType="LCD" layoutX="103.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reason For Visit" wrappingWidth="159.99999999999994">
          <font>
             <Font name="Arial Black" size="14.0" />
