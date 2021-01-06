@@ -61,5 +61,6 @@
          </font>
       </Button>
       <TextField fx:id="showtime" layoutX="329.0" layoutY="206.0" prefHeight="30.0" prefWidth="198.0" />
+      <Text fx:id="bookfail" layoutX="89.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="219.7366943359375" />
    </children>
 </AnchorPane>

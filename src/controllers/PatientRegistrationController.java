@@ -51,6 +51,9 @@ public class PatientRegistrationController {
             String username = usernameTextField.getText();
             String password = passwordField.getText();
             String confirmPassword = confirmPasswordField.getText();
+            ArrayList<String> date = null;
+            ArrayList<String> time = null;
+            ArrayList<String> reason = null;
 
             // Check if username and icNo have existed in database
             if (!PatientDao.isExist(icNo, username)) {
@@ -63,7 +66,14 @@ public class PatientRegistrationController {
                     patientInfo.add(phoneNum);
                     patientInfo.add(username);
                     patientInfo.add(password);
-                    PatientDao.createPatient(patientInfo);
+
+                    ArrayList<ArrayList<String>> patientBook = new ArrayList<>();
+                    patientBook.add(date);
+                    patientBook.add(time);
+                    patientBook.add(reason);
+
+                    PatientDao.createPatient(patientInfo,patientBook);
+
                     errorMessageLabel.setTextFill(Color.rgb(12, 12, 101));
                     errorMessageLabel.setText("Account registered successfully!");
 

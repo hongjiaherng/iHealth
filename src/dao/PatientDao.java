@@ -1,6 +1,7 @@
 package dao;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
 import de.mkammerer.argon2.Argon2;
@@ -59,7 +60,7 @@ public class PatientDao {
         return true;
     }
 
-    public static void createPatient(List<String> patientInfo) {
+    public static void createPatient(List<String> patientInfo, List<ArrayList<String>> patientbook) {
         MongoCollection<Patient> patientCollection = ihealthDB.getCollection("patients", Patient.class);
 
         // Create instance
@@ -78,7 +79,11 @@ public class PatientDao {
                     .setEmail(patientInfo.get(2))
                     .setPhoneNum(patientInfo.get(3))
                     .setUsername(patientInfo.get(4))
-                    .setPassword(hash);
+                    .setPassword(hash)
+                    .setBookedTime(patientbook.get(0))
+                    .setConfirmDate(patientbook.get(1))
+                    .setReason(patientbook.get(2));
+
             patientCollection.insertOne(newPatient);
             System.out.println("Patient inserted");
 
@@ -89,7 +94,8 @@ public class PatientDao {
 
     }
 
-    public static Patient findbook(String date, String time) {
+    public static Patient findbook( String date, String time) {
+        int i =0;
 
         if (ihealthDB == null) {
             System.out.println("Connection to MongoDB to find book date is not properly set (PatientDao)");
@@ -98,8 +104,8 @@ public class PatientDao {
 
         MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient bookdate = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
-
         return bookdate;
+
     }
 
     public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason) {

@@ -7,6 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +34,9 @@ public class PatientMakeAppointmentController {
 
     @FXML
     private TextField showtime;
+
+    @FXML
+    private Text bookfail;
 
     @FXML
     public void datepicker(){
@@ -133,6 +137,8 @@ public class PatientMakeAppointmentController {
         else {
             unsuceccfull();
             System.out.println("Date booked by other ");
+            bookfail.setText("Sorry, date booked by other");
+
         }
     }
 
