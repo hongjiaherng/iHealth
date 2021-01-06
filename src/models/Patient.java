@@ -1,6 +1,8 @@
 package models;
 
 import org.bson.types.ObjectId;
+
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Patient {
@@ -15,10 +17,10 @@ public class Patient {
     private String icNo;
     private String email;
     private String phoneNum;
-    private String reason;
-    private String confirmDate;
-    private String bookedTime;
-    private String remarks;
+    private  ArrayList<String>  reason;
+    private  ArrayList<String> confirmDate;
+    private   ArrayList<String>  bookedTime;
+    private   ArrayList<String>remarks;
 
 
     // Getter and setter
@@ -85,39 +87,39 @@ public class Patient {
         return phoneNum;
     }
 
-    public Patient setReason(String reason) {
+    public Patient setReason( ArrayList<String>  reason) {
         this.reason = reason;
         return this;
     }
 
-    public String getReason() {
+    public  ArrayList<String> getReason() {
         return reason;
     }
 
-    public Patient setConfirmDate(String confirmDate) {
+    public Patient setConfirmDate( ArrayList<String>  confirmDate) {
         this.confirmDate = confirmDate;
         return this;
     }
 
-    public String getConfirmDate() {
+    public  ArrayList<String> getConfirmDate() {
         return confirmDate;
     }
 
-    public Patient setBookedTime(String bookedTime) {
+    public Patient setBookedTime( ArrayList<String>  bookedTime) {
         this.bookedTime = bookedTime;
         return this;
     }
 
-    public String getBookedTime() {
+    public ArrayList<String>  getBookedTime() {
         return bookedTime;
     }
 
-    public Patient setRemarks(String remarks) {
+    public Patient setRemarks( ArrayList<String> remarks) {
         this.remarks = remarks;
         return this;
     }
 
-    public String getRemarks() {
+    public  ArrayList<String>  getRemarks() {
         return remarks;
     }
 

@@ -12,12 +12,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import models.Patient;
 
 
 public class PatientMakeAppointmentController {
 
     private String date,time, reason;
+    ArrayList<String> datebooked = new ArrayList<String>();
+    ArrayList<String> timebooked = new ArrayList<String>();
+    ArrayList<String> reasonToVisit = new ArrayList<String>();
+
 
     @FXML
     private TextField reasontovisit;
@@ -26,63 +32,68 @@ public class PatientMakeAppointmentController {
     private DatePicker datepicker;
 
     @FXML
+    private TextField showtime;
+
+    @FXML
     public void datepicker(){
         date = datepicker.getValue().toString();
+
     }
 
     @FXML
     public void time8(ActionEvent actionEvent)  {
         time="8.00am";
+        showtime.setText(time);
     }
 
     @FXML
     public void time9(ActionEvent actionEvent)  {
-        time="9.00am";
+        time="9.00am";showtime.setText(time);
     }
 
     @FXML
     public void time10(ActionEvent actionEvent) {
-        time="10.00am";
+        time="10.00am";showtime.setText(time);
     }
 
     @FXML
     public void time11(ActionEvent actionEvent)  {
-        time="11.00am";
+        time="11.00am";showtime.setText(time);
     }
 
     @FXML
     public void time6(ActionEvent actionEvent)  {
-        time="6.00pm";
+        time="6.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time7(ActionEvent actionEvent)  {
-        time="7.00pm";
+        time="7.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time1(ActionEvent actionEvent)  {
-        time="1.00pm";
+        time="1.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time2(ActionEvent actionEvent)  {
-        time="2.00pm";
+        time="2.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time3(ActionEvent actionEvent)  {
-        time="3.00pm";
+        time="3.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time4(ActionEvent actionEvent)  {
-        time="4.00pm";
+        time="4.00pm";showtime.setText(time);
     }
 
     @FXML
     public void time5(ActionEvent actionEvent)  {
-        time="5.00pm";
+        time="5.00pm";showtime.setText(time);
     }
 
     @FXML
@@ -90,11 +101,23 @@ public class PatientMakeAppointmentController {
         unsuceccfull();
     }
 
+    @FXML
+    public void backOnAction(ActionEvent actionEvent) throws IOException {
+        Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+        Scene booksucessfullyScene = new Scene(booksucessfully);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(booksucessfullyScene);
+        appStage.show();
+    }
+
 
     @FXML
     public void booknowOnAction(ActionEvent actionEvent) throws IOException{
 
         reason = reasontovisit.getText();
+        datebooked.add(date);
+        timebooked.add(time);
+        reasonToVisit.add(reason);
 
         Patient validatedDate = PatientDao.findbook(date, time); // data access object
 
@@ -114,7 +137,7 @@ public class PatientMakeAppointmentController {
     }
 
     public void sucessbook() {
-        Patient newPatient = PatientDao.booksucessfull(date, time, reason);
+        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit);
         System.out.println("Book successfully");
     }
 
@@ -122,6 +145,7 @@ public class PatientMakeAppointmentController {
         reasontovisit.setText("");
         time=null;
         date=null;
-        datepicker.setValue(null);
+        datepicker.getEditor().clear();
+        showtime.setText(null);
     }
 }

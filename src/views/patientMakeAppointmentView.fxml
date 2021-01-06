@@ -27,19 +27,11 @@
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="191.0" layoutY="339.0" mnemonicParsing="false" onAction="#booknowOnAction" style="-fx-background-color: #3385FF;" text="Book Now" textFill="WHITE">
+      <Button layoutX="155.0" layoutY="339.0" mnemonicParsing="false" onAction="#booknowOnAction" style="-fx-background-color: #3385FF;" text="Book Now" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <MenuButton layoutX="341.0" layoutY="133.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Working Time" textFill="WHITE">
-        <items>
-          <MenuItem mnemonicParsing="false" text="8.00 a.m. - 8.00 p.m." />
-        </items>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </MenuButton>
-      <MenuButton fx:id="timeselect" layoutX="341.0" layoutY="207.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Time" textFill="WHITE">
+      <MenuButton fx:id="timeselect" layoutX="329.0" layoutY="133.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #3385FF;" text="Select Time" textFill="WHITE">
          <items>
             <MenuItem id="8am" mnemonicParsing="false" onAction="#time8" text="8.00 a.m." />
             <MenuItem id="9am" mnemonicParsing="false" onAction="#time9" text="9.00 a.m." />
@@ -63,5 +55,11 @@
          </image>
       </ImageView>
       <DatePicker fx:id="datepicker" layoutX="90.0" layoutY="207.0" onAction="#datepicker" prefHeight="30.0" prefWidth="190.0" />
+      <Button layoutX="274.0" layoutY="338.0" mnemonicParsing="false" onAction="#backOnAction" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #3385FF;" text="Back" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+      <TextField fx:id="showtime" layoutX="329.0" layoutY="206.0" prefHeight="30.0" prefWidth="198.0" />
    </children>
 </AnchorPane>
