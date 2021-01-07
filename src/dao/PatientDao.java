@@ -79,7 +79,8 @@ public class PatientDao {
                     .setPassword(hash)
                     .setBookedTime(patientBook.get(0))
                     .setConfirmDate(patientBook.get(1))
-                    .setReason(patientBook.get(2));
+                    .setReason(patientBook.get(2))
+                    .setRemarks(patientBook.get(3));
 
             patientCollection.insertOne(newPatient);
             System.out.println("Patient inserted");

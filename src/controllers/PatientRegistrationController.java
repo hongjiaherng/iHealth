@@ -51,9 +51,10 @@ public class PatientRegistrationController {
             String username = usernameTextField.getText();
             String password = passwordField.getText();
             String confirmPassword = confirmPasswordField.getText();
-            ArrayList<String> date = null;
-            ArrayList<String> time = null;
-            ArrayList<String> reason = null;
+            ArrayList<String> date = new ArrayList<>();
+            ArrayList<String> time = new ArrayList<>();
+            ArrayList<String> reason = new ArrayList<>();
+            ArrayList<String> remark = new ArrayList<>();
 
             // Check if username and icNo have existed in database
             if (!PatientDao.isExist(icNo, username)) {
@@ -71,6 +72,7 @@ public class PatientRegistrationController {
                     patientBook.add(date);
                     patientBook.add(time);
                     patientBook.add(reason);
+                    patientBook.add(remark);
 
                     PatientDao.createPatient(patientInfo,patientBook);
 
