@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import models.Appointment;
 import models.Patient;
 import utils.SessionManager;
 
@@ -25,24 +26,24 @@ import java.util.ResourceBundle;
 public class PatientCheckAppointmentController implements Initializable {
 
     @FXML
-    private TableView<Patient> table;
+    private TableView<Appointment> table;
 
     @FXML
-    private TableColumn<Patient, String> usernameCol;
+    private TableColumn<Appointment, String> usernameCol;
 
     @FXML
-    private TableColumn<Patient, String> reasonCol;
+    private TableColumn<Appointment, String> reasonCol;
 
     @FXML
-    private TableColumn<Patient, String> confirmDateCol;
+    private TableColumn<Appointment, String> confirmDateCol;
 
     @FXML
-    private TableColumn<Patient, String> bookedTimeCol;
+    private TableColumn<Appointment, String> bookedTimeCol;
 
     @FXML
-    private TableColumn<Patient, String> remarksCol;
+    private TableColumn<Appointment, String> remarksCol;
 
-    ObservableList<Patient> oblist = FXCollections.observableArrayList();
+    ObservableList<Appointment> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,23 +51,31 @@ public class PatientCheckAppointmentController implements Initializable {
         String username = SessionManager.getSessionUser().getUsername();
         Patient currentPatient = PatientDao.findAppointment(username);
 
-        oblist.add(currentPatient);
-        oblist.add(currentPatient);
+        if (currentPatient != null) {
+            for (int i = 0; i < currentPatient.getReason().size(); i++) {
+                String reason = currentPatient.getReason().get(i);
+                String confirmDate = currentPatient.getConfirmDate().get(i);
+                String bookedTime = currentPatient.getBookedTime().get(i);
+                String remark;
+                try {
+                    remark = currentPatient.getRemarks().get(i);
+                } catch (IllegalStateException | NullPointerException e) {
+                    remark = "-";
+                }
 
-        usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
-        reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
-        confirmDateCol.setCellValueFactory(new PropertyValueFactory<>("confirmDate"));
-        bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
-        remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+                Appointment appointment = new Appointment(username, reason, confirmDate, bookedTime, remark);
 
-//        reasonCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Patient, String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue<String> call(TableColumn.CellDataFeatures<Patient, String> p) {
-//                return p.getValue().new SimpleStringProperty();
-//            }
-//        });
+                oblist.add(appointment);
 
-        table.setItems(oblist);
+                usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+                reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
+                confirmDateCol.setCellValueFactory(new PropertyValueFactory<>("confirmDate"));
+                bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
+                remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+
+                table.setItems(oblist);
+            }
+        }
     }
 
     @FXML
