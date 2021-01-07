@@ -57,7 +57,7 @@ public class PatientDao {
         return true;
     }
 
-    public static void createPatient(List<String> patientInfo, List<ArrayList<String>> patientbook) {
+    public static void createPatient(List<String> patientInfo, List<ArrayList<String>> patientBook) {
         MongoCollection<Patient> patientCollection = ihealthDB.getCollection("patients", Patient.class);
 
         // Create instance
@@ -77,9 +77,9 @@ public class PatientDao {
                     .setPhoneNum(patientInfo.get(3))
                     .setUsername(patientInfo.get(4))
                     .setPassword(hash)
-                    .setBookedTime(patientbook.get(0))
-                    .setConfirmDate(patientbook.get(1))
-                    .setReason(patientbook.get(2));
+                    .setBookedTime(patientBook.get(0))
+                    .setConfirmDate(patientBook.get(1))
+                    .setReason(patientBook.get(2));
 
             patientCollection.insertOne(newPatient);
             System.out.println("Patient inserted");
@@ -104,7 +104,7 @@ public class PatientDao {
         return bookdate;
     }
 
-    public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason, String bookdate, String booktime) {
+    public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason) {
 
         if (ihealthDB == null) {
             System.out.println("Connection to MongoDB to save booked date is not properly set (bookDao)");

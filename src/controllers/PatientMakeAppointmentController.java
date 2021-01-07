@@ -121,9 +121,6 @@ public class PatientMakeAppointmentController {
     public void booknowOnAction(ActionEvent actionEvent) throws IOException{
 
         reason = reasontovisit.getText();
-        datebooked.add(date);
-        timebooked.add(time);
-        reasonToVisit.add(reason);
 
         if(date == null && time == null )
             bookfail.setText("Please select a date and time ");
@@ -138,6 +135,9 @@ public class PatientMakeAppointmentController {
             Patient validatedDate = PatientDao.findbook(date, time); // data access object
 
             if (validatedDate == null) {
+                datebooked.add(date);
+                timebooked.add(time);
+                reasonToVisit.add(reason);
                 sucessbook();
                 Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/bookSuccessView.fxml"));
                 Scene booksucessfullyScene = new Scene(booksucessfully);
@@ -155,7 +155,7 @@ public class PatientMakeAppointmentController {
     }
 
     public void sucessbook() {
-        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit, date, time);
+        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit);
         System.out.println("Book successfully");
     }
 
