@@ -133,6 +133,19 @@ public class PatientDao {
              return null;
         }
     }
+
+    public static Patient findAppointment(String username) {
+
+        if (ihealthDB == null) {
+            System.out.println("Connection to MongoDB is not properly set (PatientDao)");
+            return null;
+        }
+
+        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
+        Patient currentPatient = patientsCollection.find(eq("username", username)).first();
+
+        return currentPatient;
+    }
 }
 
 

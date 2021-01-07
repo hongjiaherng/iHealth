@@ -6,21 +6,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Patient {
-    private static ObjectId id;
 
-    // username, password, name, email address, date of birth
-
-    //    private ObjectId id;
+    private ObjectId id;
     private String username;
     private String password;
     private String name;
     private String icNo;
     private String email;
     private String phoneNum;
-    private  ArrayList<String>  reason;
-    private  ArrayList<String> confirmDate;
-    private   ArrayList<String>  bookedTime;
-    private   ArrayList<String>remarks;
+    private ArrayList<String> reason;
+    private ArrayList<String> confirmDate;
+    private ArrayList<String> bookedTime;
+    private ArrayList<String> remarks;
 
     // Getter and setter
     public Patient setId(ObjectId id) {
@@ -28,7 +25,7 @@ public class Patient {
         return this;
     }
 
-    public static ObjectId getId() {
+    public ObjectId getId() {
         return id;
     }
 
@@ -91,7 +88,7 @@ public class Patient {
         return this;
     }
 
-    public  ArrayList<String> getReason() {
+    public ArrayList<String> getReason() {
         return reason;
     }
 
@@ -100,7 +97,7 @@ public class Patient {
         return this;
     }
 
-    public  ArrayList<String> getConfirmDate() {
+    public ArrayList<String> getConfirmDate() {
         return confirmDate;
     }
 
@@ -118,7 +115,7 @@ public class Patient {
         return this;
     }
 
-    public  ArrayList<String>  getRemarks() {
+    public ArrayList<String>  getRemarks() {
         return remarks;
     }
 
