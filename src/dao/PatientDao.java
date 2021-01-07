@@ -1,17 +1,14 @@
 package dao;
 
+
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import models.Patient;
-import org.bson.Document;
-import org.bson.conversions.Bson;
 import utils.DBConnection;
 import utils.SessionManager;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +91,8 @@ public class PatientDao {
 
     }
 
-    public static Patient findbook( String date, String time) {
-        int i =0;
+    public static Patient findbook( String  date, String  time) {
+
 
         if (ihealthDB == null) {
             System.out.println("Connection to MongoDB to find book date is not properly set (PatientDao)");
@@ -105,10 +102,9 @@ public class PatientDao {
         MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient bookdate = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
         return bookdate;
-
     }
 
-    public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason) {
+    public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason, String bookdate, String booktime) {
 
         if (ihealthDB == null) {
             System.out.println("Connection to MongoDB to save booked date is not properly set (bookDao)");
@@ -125,7 +121,6 @@ public class PatientDao {
             System.out.println("Patients exits");
 
             patient.setBookedTime(time).setConfirmDate(date).setReason(reason);
-
 //            Document filterByUsername = new Document("username", patient.getUsername());
 //            FindOneAndReplaceOptions returnAfterReplace = new FindOneAndReplaceOptions().returnDocument(ReturnDocument.AFTER);
 //            Patient updatedPatient = patientsCollection.findOneAndReplace(filterByUsername, patient, returnAfterReplace);

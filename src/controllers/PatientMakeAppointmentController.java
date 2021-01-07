@@ -20,7 +20,9 @@ import models.Patient;
 
 public class PatientMakeAppointmentController {
 
-    private String date,time, reason;
+    private String date = null,
+            time = null,
+            reason = null;
     ArrayList<String> datebooked = new ArrayList<String>();
     ArrayList<String> timebooked = new ArrayList<String>();
     ArrayList<String> reasonToVisit = new ArrayList<String>();
@@ -123,27 +125,37 @@ public class PatientMakeAppointmentController {
         timebooked.add(time);
         reasonToVisit.add(reason);
 
-        Patient validatedDate = PatientDao.findbook(date, time); // data access object
+        if(date == null && time == null )
+            bookfail.setText("Please select a date and time ");
 
-        if (validatedDate == null){
-            sucessbook();
-           Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/bookSuccessView.fxml"));
-           Scene booksucessfullyScene = new Scene(booksucessfully);
-           Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-           appStage.setScene(booksucessfullyScene);
-           appStage.show();
+        else if (date == null)
+                bookfail.setText("Please select a date");
 
-        }
+        else if(time == null)
+            bookfail.setText("Please select a time");
+
         else {
-            unsuceccfull();
-            System.out.println("Date booked by other ");
-            bookfail.setText("Sorry, date booked by other");
+            Patient validatedDate = PatientDao.findbook(date, time); // data access object
 
+            if (validatedDate == null) {
+                sucessbook();
+                Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/bookSuccessView.fxml"));
+                Scene booksucessfullyScene = new Scene(booksucessfully);
+                Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                appStage.setScene(booksucessfullyScene);
+                appStage.show();
+
+            } else {
+                unsuceccfull();
+                System.out.println("Date booked by other ");
+                bookfail.setText("Sorry, date booked by other");
+
+            }
         }
     }
 
     public void sucessbook() {
-        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit);
+        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit, date, time);
         System.out.println("Book successfully");
     }
 

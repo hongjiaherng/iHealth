@@ -22,7 +22,6 @@ public class Patient {
     private   ArrayList<String>  bookedTime;
     private   ArrayList<String>remarks;
 
-
     // Getter and setter
     public Patient setId(ObjectId id) {
         this.id = id;
@@ -122,7 +121,6 @@ public class Patient {
     public  ArrayList<String>  getRemarks() {
         return remarks;
     }
-
 
     // toString()
     @Override
