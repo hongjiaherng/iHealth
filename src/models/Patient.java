@@ -3,6 +3,7 @@ package models;
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Patient {
@@ -14,10 +15,10 @@ public class Patient {
     private String icNo;
     private String email;
     private String phoneNum;
-    private ArrayList<String> reason;
-    private ArrayList<String> confirmDate;
-    private ArrayList<String> bookedTime;
-    private ArrayList<String> remarks;
+    private List<String> reason;
+    private List<String> confirmDate;
+    private List<String> bookedTime;
+    private List<String> remarks;
 
     // Getter and setter
     public Patient setId(ObjectId id) {
@@ -83,39 +84,39 @@ public class Patient {
         return phoneNum;
     }
 
-    public Patient setReason( ArrayList<String>  reason) {
+    public Patient setReason(List<String>  reason) {
         this.reason = reason;
         return this;
     }
 
-    public ArrayList<String> getReason() {
+    public List<String> getReason() {
         return reason;
     }
 
-    public Patient setConfirmDate( ArrayList<String>  confirmDate) {
+    public Patient setConfirmDate(List<String> confirmDate) {
         this.confirmDate = confirmDate;
         return this;
     }
 
-    public ArrayList<String> getConfirmDate() {
+    public List<String> getConfirmDate() {
         return confirmDate;
     }
 
-    public Patient setBookedTime( ArrayList<String>  bookedTime) {
+    public Patient setBookedTime(List<String>  bookedTime) {
         this.bookedTime = bookedTime;
         return this;
     }
 
-    public ArrayList<String>  getBookedTime() {
+    public List<String>  getBookedTime() {
         return bookedTime;
     }
 
-    public Patient setRemarks( ArrayList<String> remarks) {
+    public Patient setRemarks(List<String> remarks) {
         this.remarks = remarks;
         return this;
     }
 
-    public ArrayList<String>  getRemarks() {
+    public List<String> getRemarks() {
         return remarks;
     }
 

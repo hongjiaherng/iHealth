@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import utils.DBConnection;
+import utils.SessionManager;
 
 public class Main extends Application {
 
@@ -15,19 +16,20 @@ public class Main extends Application {
         DBConnection.startConnection();
     }
 
-    @Override // node
+    @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("iHealth v0");
         primaryStage.setScene(new Scene(root, 600, 400));
         primaryStage.setResizable(false);
-        primaryStage.show(); // compulsory
+        primaryStage.show();
     }
 
     @Override
     public void stop() {
         DBConnection.stopConnection();
+        SessionManager.destroySession();
     }
 
     public static void main(String[] args) {

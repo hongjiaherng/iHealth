@@ -89,49 +89,43 @@ public class PatientDao {
             // Wipe confidential data
             argon2.wipeArray(password);
         }
-
     }
 
-    public static Patient findbook( String  date, String  time) {
-
-
+    public static boolean isAvailable(String date, String time) {
         if (ihealthDB == null) {
             System.out.println("Connection to MongoDB to find book date is not properly set (PatientDao)");
-            return null;
+            return false;
         }
 
         MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
-        Patient bookdate = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
-        return bookdate;
+        Patient newPatient = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
+
+        if (newPatient == null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public static Patient booksucessfull( ArrayList<String> date,  ArrayList<String>  time,  ArrayList<String> reason) {
+    public static Patient bookAppointment(String username, String date, String time, String reason) {
 
         if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB to save booked date is not properly set (bookDao)");
+            System.out.println("Connection to MongoDB to save booked date is not properly set (PatientDao)");
+            return null;
         }
 
-        String username = SessionManager.getSessionUser().getUsername();
         MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
-        Patient patient = patientsCollection.find((eq("username", username))).first();
+        Patient newPatient = patientsCollection.find(eq("username", username)).first();
 
-        if (patient == null) {
-            System.out.println("The patients did not exits");
+        if (newPatient == null) {
             return null;
         } else {
-            System.out.println("Patients exits");
-
-            patient.setBookedTime(time).setConfirmDate(date).setReason(reason);
-//            Document filterByUsername = new Document("username", patient.getUsername());
-//            FindOneAndReplaceOptions returnAfterReplace = new FindOneAndReplaceOptions().returnDocument(ReturnDocument.AFTER);
-//            Patient updatedPatient = patientsCollection.findOneAndReplace(filterByUsername, patient, returnAfterReplace);
-//            System.out.println("Patient replaced : " + updatedPatient);
-//            return updatedPatient;
-
-             patientsCollection.findOneAndUpdate(Filters.eq("username", patient.getUsername()),Updates.pushEach("bookedTime", time));
-             patientsCollection.findOneAndUpdate(Filters.eq("username", patient.getUsername()),Updates.pushEach("confirmDate", date));
-             patientsCollection.findOneAndUpdate(Filters.eq("username", patient.getUsername()),Updates.pushEach("reason", reason));
-             return null;
+            newPatient.setBookedTime(List.of(time)).setConfirmDate(List.of(date)).setReason(List.of(reason)).setRemarks(List.of(""));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("bookedTime", List.of(time)));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("confirmDate", List.of(date)));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("reason", List.of(reason)));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("remarks", List.of("")));
+            return newPatient;
         }
     }
 

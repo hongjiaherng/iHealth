@@ -43,7 +43,7 @@ public class PatientCheckAppointmentController implements Initializable {
     @FXML
     private TableColumn<Appointment, String> remarksCol;
 
-    ObservableList<Appointment> oblist = FXCollections.observableArrayList();
+    ObservableList<Appointment> obList = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -56,16 +56,11 @@ public class PatientCheckAppointmentController implements Initializable {
                 String reason = currentPatient.getReason().get(i);
                 String confirmDate = currentPatient.getConfirmDate().get(i);
                 String bookedTime = currentPatient.getBookedTime().get(i);
-                String remark;
-                try {
-                    remark = currentPatient.getRemarks().get(i);
-                } catch (IllegalStateException | NullPointerException e) {
-                    remark = "-";
-                }
+                String remark = currentPatient.getRemarks().get(i);
 
                 Appointment appointment = new Appointment(username, reason, confirmDate, bookedTime, remark);
 
-                oblist.add(appointment);
+                obList.add(appointment);
 
                 usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
                 reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
@@ -73,7 +68,7 @@ public class PatientCheckAppointmentController implements Initializable {
                 bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
                 remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
 
-                table.setItems(oblist);
+                table.setItems(obList);
             }
         }
     }

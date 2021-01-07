@@ -1,169 +1,128 @@
 package controllers;
 
-
+import dao.OperatingDetailsDao;
 import dao.PatientDao;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
+import models.OperatingDetails;
 import models.Patient;
+import utils.SessionManager;
 
-
-public class PatientMakeAppointmentController {
-
-    private String date = null,
-            time = null,
-            reason = null;
-    ArrayList<String> datebooked = new ArrayList<String>();
-    ArrayList<String> timebooked = new ArrayList<String>();
-    ArrayList<String> reasonToVisit = new ArrayList<String>();
-
+public class PatientMakeAppointmentController implements Initializable {
 
     @FXML
-    private TextField reasontovisit;
-
+    private Label diffOperatingHoursLabel;
     @FXML
-    private DatePicker datepicker;
-
+    private Label bookFailLabel;
     @FXML
-    private TextField showtime;
-
+    private ChoiceBox<String> timeChoiceBox;
     @FXML
-    private Text bookfail;
-
+    private DatePicker datePicker;
     @FXML
-    public void datepicker(){
-        date = datepicker.getValue().toString();
+    private TextField visitReasonTextField;
 
+    private String date;
+    private String visitReason;
+    private String time;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        timeChoiceBox.getItems().add("");
     }
 
     @FXML
-    public void time8(ActionEvent actionEvent)  {
-        time="8.00am";
-        showtime.setText(time);
+    public void pickDateOnAction(ActionEvent actionEvent) {
+
+        String openingTime, closingTime;
+        timeChoiceBox.getItems().clear();
+        date = datePicker.getValue().toString();
+
+        OperatingDetails operatingDetails = OperatingDetailsDao.findOperatingHours(date);
+
+        if (operatingDetails == null) {
+            // Default opening and closing time
+            openingTime = "0800";
+            closingTime = "1800";
+            diffOperatingHoursLabel.setText("");
+        } else {
+            // Follow the specified opening and closing time
+            openingTime = operatingDetails.getOpeningTime();
+            closingTime = operatingDetails.getClosingTime();
+            diffOperatingHoursLabel.setText("Operating hours for today is from " + openingTime + " to " + closingTime + " due to some adjustment by clinic staff");
+        }
+
+        for (int temp = Integer.parseInt(openingTime); temp < Integer.parseInt(closingTime); temp += 100) {
+            StringBuilder timeSelection = new StringBuilder(String.valueOf(temp));
+            if (timeSelection.length() == 3) {
+                timeSelection.insert(0, "0");
+            }
+            timeChoiceBox.getItems().add(timeSelection.toString());
+        }
     }
 
     @FXML
-    public void time9(ActionEvent actionEvent)  {
-        time="9.00am";showtime.setText(time);
-    }
+    public void bookNowOnAction(ActionEvent actionEvent) throws IOException {
 
-    @FXML
-    public void time10(ActionEvent actionEvent) {
-        time="10.00am";showtime.setText(time);
-    }
+        String username = SessionManager.getSessionUser().getUsername();
 
-    @FXML
-    public void time11(ActionEvent actionEvent)  {
-        time="11.00am";showtime.setText(time);
-    }
+        if (date == null || visitReasonTextField.getText().isEmpty() || timeChoiceBox.getValue() == null) {
+            bookFailLabel.setText("Please fill up all the fields");
+        } else {
+            bookFailLabel.setText("");
+            date = datePicker.getValue().toString();
+            visitReason = visitReasonTextField.getText();
+            time = timeChoiceBox.getValue();
 
-    @FXML
-    public void time6(ActionEvent actionEvent)  {
-        time="6.00pm";showtime.setText(time);
-    }
+            boolean timeSlotAvailable = PatientDao.isAvailable(date, time);
 
-    @FXML
-    public void time7(ActionEvent actionEvent)  {
-        time="7.00pm";showtime.setText(time);
-    }
+            if (timeSlotAvailable) {
+                Patient patient = PatientDao.bookAppointment(username, date, time, visitReason);
 
-    @FXML
-    public void time1(ActionEvent actionEvent)  {
-        time="1.00pm";showtime.setText(time);
-    }
-
-    @FXML
-    public void time2(ActionEvent actionEvent)  {
-        time="2.00pm";showtime.setText(time);
-    }
-
-    @FXML
-    public void time3(ActionEvent actionEvent)  {
-        time="3.00pm";showtime.setText(time);
-    }
-
-    @FXML
-    public void time4(ActionEvent actionEvent)  {
-        time="4.00pm";showtime.setText(time);
-    }
-
-    @FXML
-    public void time5(ActionEvent actionEvent)  {
-        time="5.00pm";showtime.setText(time);
-    }
-
-    @FXML
-    public void cancelonAction(ActionEvent actionEvent)  {
-        unsuceccfull();
-    }
-
-    @FXML
-    public void backOnAction(ActionEvent actionEvent) throws IOException {
-        Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
-        Scene booksucessfullyScene = new Scene(booksucessfully);
-        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        appStage.setScene(booksucessfullyScene);
-        appStage.show();
-    }
-
-
-    @FXML
-    public void booknowOnAction(ActionEvent actionEvent) throws IOException{
-
-        reason = reasontovisit.getText();
-
-        if(date == null && time == null )
-            bookfail.setText("Please select a date and time ");
-
-        else if (date == null)
-                bookfail.setText("Please select a date");
-
-        else if(time == null)
-            bookfail.setText("Please select a time");
-
-        else {
-            Patient validatedDate = PatientDao.findbook(date, time); // data access object
-
-            if (validatedDate == null) {
-                datebooked.add(date);
-                timebooked.add(time);
-                reasonToVisit.add(reason);
-                sucessbook();
-                Parent booksucessfully = FXMLLoader.load(getClass().getResource("../views/bookSuccessView.fxml"));
-                Scene booksucessfullyScene = new Scene(booksucessfully);
-                Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                appStage.setScene(booksucessfullyScene);
-                appStage.show();
+                if (patient != null) {
+                    Parent bookSuccessRoot = FXMLLoader.load(getClass().getResource("../views/bookSuccessView.fxml"));
+                    Scene bookSuccessScene = new Scene(bookSuccessRoot);
+                    Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    appStage.setScene(bookSuccessScene);
+                    appStage.show();
+                }
 
             } else {
-                unsuceccfull();
-                System.out.println("Date booked by other ");
-                bookfail.setText("Sorry, date booked by other");
-
+                bookFailLabel.setText("Time slot had been booked by others");
             }
         }
     }
 
-    public void sucessbook() {
-        Patient newPatient = PatientDao.booksucessfull(datebooked, timebooked, reasonToVisit);
-        System.out.println("Book successfully");
+
+    @FXML
+    public void cancelOnAction(ActionEvent actionEvent) {
+        visitReasonTextField.setText("");
+        datePicker.getEditor().clear();
+        timeChoiceBox.getItems().clear();
+        diffOperatingHoursLabel.setText("");
     }
 
-    public void unsuceccfull(){
-        reasontovisit.setText("");
-        time=null;
-        date=null;
-        datepicker.getEditor().clear();
-        showtime.setText(null);
+    @FXML
+    public void backOnAction(ActionEvent actionEvent) throws IOException {
+        Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+        Scene patientMainPageScene = new Scene(patientMainPageRoot);
+        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        appStage.setScene(patientMainPageScene);
+        appStage.show();
     }
 }

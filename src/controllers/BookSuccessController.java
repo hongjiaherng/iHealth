@@ -13,10 +13,10 @@ import java.io.IOException;
 
         @FXML
         public void backOnAction(javafx.event.ActionEvent actionEvent) throws IOException {
-            Parent patientMakeAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMakeAppointmentView.fxml"));
-            Scene patientMakeAppointmentScene = new Scene(patientMakeAppointmentRoot);
+            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+            Scene patientMainPageScene = new Scene(patientMainPageRoot);
             Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            appStage.setScene(patientMakeAppointmentScene);
+            appStage.setScene(patientMainPageScene);
             appStage.show();
         }
     }

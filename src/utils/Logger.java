@@ -30,6 +30,6 @@ public class Logger {
     }
 
     private static String createLogString(String username, String status) {
-        return Instant.now().toString() + " : Username = " + username + " : " + status;
+        return String.format("%32s : Username = %s (%s)", Instant.now().toString(), username, status);
     }
 }
