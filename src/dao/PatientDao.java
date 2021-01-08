@@ -4,12 +4,17 @@ package dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
+import com.mongodb.client.result.UpdateResult;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
+import models.Appointment;
 import models.Patient;
+import org.bson.Document;
+import org.bson.conversions.Bson;
 import utils.DBConnection;
 import utils.SessionManager;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.*;
@@ -140,6 +145,32 @@ public class PatientDao {
         Patient currentPatient = patientsCollection.find(eq("username", username)).first();
 
         return currentPatient;
+    }
+
+    public static Patient removeSelectedAppointment(Appointment appointment) {
+
+        String username = appointment.getUsername();
+        String confirmDate = appointment.getConfirmDate();
+        String bookedTime = appointment.getBookedTime();
+        String reason = appointment.getReason();
+        String remarks = appointment.getRemarks();
+
+        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
+        Patient existingPatient = patientsCollection.find(eq("username", username)).first();
+
+        if (existingPatient != null) {
+
+            existingPatient.getConfirmDate().remove(confirmDate);
+            existingPatient.getBookedTime().remove(bookedTime);
+            existingPatient.getReason().remove(reason);
+            existingPatient.getRemarks().remove(remarks);
+
+            Document filterByUsername = new Document("username", username);
+            FindOneAndReplaceOptions returnDocAfterReplace = new FindOneAndReplaceOptions().returnDocument(ReturnDocument.AFTER);
+            existingPatient = patientsCollection.findOneAndReplace(filterByUsername, existingPatient, returnDocAfterReplace);
+
+        }
+        return existingPatient;
     }
 }
 

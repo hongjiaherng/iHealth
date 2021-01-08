@@ -8,7 +8,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Appointment;
 import models.Patient;
@@ -16,15 +21,21 @@ import utils.SessionManager;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PatientCheckAppointmentController implements Initializable {
 
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private MenuItem cancelMenuItem;
+    @FXML
+    private ContextMenu rightClickContextMenu;
     @FXML
     private TableView<Appointment> table;
 
@@ -80,5 +91,43 @@ public class PatientCheckAppointmentController implements Initializable {
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         appStage.setScene(checkAppointmentScene);
         appStage.show();
+    }
+
+    @FXML
+    public void rightClickToDelete(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+            cancelMenuItem.setOnAction(e -> {
+                deleteConfirmation();
+            });
+        }
+    }
+
+    @FXML
+    public void deleteAppointmentOnAction(ActionEvent actionEvent) {
+        if (table.getSelectionModel().getSelectedItem() != null) {
+            deleteConfirmation();
+        } else {
+            Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+            errorAlert.setContentText("Please select an appointment");
+            errorAlert.show();
+        }
+        table.getSelectionModel().clearSelection();
+    }
+
+    private void deleteConfirmation() {
+        Appointment item = table.getSelectionModel().getSelectedItem();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Cancel Appointment");
+        alert.setHeaderText("Confirm to cancel appointment?");
+        alert.setContentText(String.format("Appointment details\n\n%10s : %s\n%10s : %s\n%8s : %s", "Date", item.getConfirmDate(), "Time", item.getBookedTime(), "Reason", item.getReason()));
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()) {
+            if (result.get() == ButtonType.OK) {
+                table.getItems().remove(item);
+                Patient patient = PatientDao.removeSelectedAppointment(item);
+            }
+        }
     }
 }
