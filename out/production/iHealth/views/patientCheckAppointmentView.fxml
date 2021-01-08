@@ -31,7 +31,7 @@
             <TableColumn fx:id="remarksCol" prefWidth="83.199951171875" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF;" text="Remarks" />
         </columns>
          <contextMenu>
-            <ContextMenu fx:id="rightClickContextMenu">
+            <ContextMenu>
               <items>
                 <MenuItem fx:id="cancelMenuItem" mnemonicParsing="false" text="Cancel this appointment" />
               </items>
@@ -44,7 +44,7 @@
             <Image url="@../res/images/calendar.png" />
          </image>
       </ImageView>
-      <Button fx:id="deleteButton" layoutX="311.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteAppointmentOnAction" prefWidth="65.0" style="-fx-background-color: #bd2c00;" text="Delete" textFill="WHITE">
+      <Button layoutX="311.0" layoutY="357.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteAppointmentOnAction" prefWidth="65.0" style="-fx-background-color: #bd2c00;" text="Delete" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -10,8 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -24,18 +22,13 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PatientCheckAppointmentController implements Initializable {
-
-    @FXML
-    private Button deleteButton;
+    
     @FXML
     private MenuItem cancelMenuItem;
-    @FXML
-    private ContextMenu rightClickContextMenu;
     @FXML
     private TableView<Appointment> table;
 
@@ -58,7 +51,6 @@ public class PatientCheckAppointmentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         String username = SessionManager.getSessionUser().getUsername();
         Patient currentPatient = PatientDao.findAppointment(username);
 
@@ -95,11 +87,16 @@ public class PatientCheckAppointmentController implements Initializable {
 
     @FXML
     public void rightClickToDelete(MouseEvent mouseEvent) {
-        if (mouseEvent.getButton() == MouseButton.SECONDARY) {
-            cancelMenuItem.setOnAction(e -> {
-                deleteConfirmation();
-            });
+        if (!obList.isEmpty()) {
+            if (mouseEvent.getButton() == MouseButton.SECONDARY) {
+                cancelMenuItem.setOnAction(e -> {
+                    deleteConfirmation();
+                });
+            }
+        } else {
+            cancelMenuItem.setDisable(true);
         }
+
     }
 
     @FXML
