@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class AdminMainPageController {
@@ -21,19 +23,19 @@ public class AdminMainPageController {
     }
 
     @FXML
-    public void editAppoimentListButtonOnAction(ActionEvent actionEvent) throws IOException{
-        Parent appoimentListRoot = FXMLLoader.load(getClass().getResource("../views/appointmentListView.fxml"));
-        Scene appoimentListScene = new Scene(appoimentListRoot);
-        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        appStage.setScene(appoimentListScene);
+    public void editAppointmentListButtonOnAction(MouseEvent mouseEvent) throws IOException{
+        Parent appointmentListRoot = FXMLLoader.load(getClass().getResource("../views/appointmentListView.fxml"));
+        Scene appointmentListScene = new Scene(appointmentListRoot);
+        Stage appStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        appStage.setScene(appointmentListScene);
         appStage.show();
     }
 
     @FXML
-    public void editOperatingHoursButtonOnAction(ActionEvent actionEvent) throws IOException{
+    public void editOperatingHoursButtonOnAction(MouseEvent mouseEvent) throws IOException{
         Parent clinicDetailsRoot = FXMLLoader.load(getClass().getResource("../views/clinicDetailsView.fxml"));
         Scene clinicDetailsScene = new Scene(clinicDetailsRoot);
-        Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        Stage appStage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
         appStage.setScene(clinicDetailsScene);
         appStage.show();
     }

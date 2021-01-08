@@ -6,10 +6,8 @@ import java.util.Objects;
 
 public class Admin {
 
-    // username, password, name
-
     private ObjectId id;
-    private String adminid;
+    private String adminId;
     private String password;
     private String name;
 
@@ -23,13 +21,13 @@ public class Admin {
         return id;
     }
 
-    public Admin setAdminID(String adminid) {
-        this.adminid = adminid;
+    public Admin setAdminId(String adminId) {
+        this.adminId = adminId;
         return this;
     }
 
-    public String getAdminID() {
-        return adminid;
+    public String getAdminId() {
+        return adminId;
     }
 
     public Admin setPassword(String password) {
@@ -50,33 +48,29 @@ public class Admin {
         return name;
     }
 
-    // toString()
     @Override
     public String toString() {
-        return "Admin{" + "id=" + id +
-                ", adminid=" + adminid +
-                ", password=" + password +
-                ", name=" + name +
-                "}";
+        return "Admin{" +
+                "id=" + id +
+                ", adminId='" + adminId + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 
-    // equals()
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Admin admin = (Admin) o;
-        return Objects.equals(id, admin.id) && Objects.equals(adminid, admin.adminid)
-                && Objects.equals(password, admin.password) && Objects.equals(name, admin.name);
+        return Objects.equals(id, admin.id) &&
+                Objects.equals(adminId, admin.adminId) &&
+                Objects.equals(password, admin.password) &&
+                Objects.equals(name, admin.name);
     }
 
-    // hashcode()
     @Override
     public int hashCode() {
-        return Objects.hash(id, adminid, password, name);
+        return Objects.hash(id, adminId, password, name);
     }
 }

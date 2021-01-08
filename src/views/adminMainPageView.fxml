@@ -29,22 +29,22 @@
             <Image url="@../res/images/settings.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="100.0" layoutY="160.0" onMouseClicked="#editAppointmentListButtonOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/date.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="350.0" layoutY="160.0" onMouseClicked="#editOperatingHoursButtonOnAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/on-time.png" />
          </image>
       </ImageView>
-      <Button layoutX="93.0" layoutY="326.0" mnemonicParsing="false" onAction="#editAppoimentListButtonOnAction" style="-fx-background-color: #3385FF;" text="Edit Appointment List" textFill="WHITE">
+      <Button layoutX="93.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#editAppointmentListButtonOnAction" style="-fx-background-color: #3385FF;" text="Edit Appointment List" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="345.0" layoutY="326.0" mnemonicParsing="false" onAction="#editOperatingHoursButtonOnAction" style="-fx-background-color: #3385FF;" text="Edit Operating Hours" textFill="WHITE">
+      <Button layoutX="345.0" layoutY="326.0" mnemonicParsing="false" onMouseClicked="#editOperatingHoursButtonOnAction" style="-fx-background-color: #3385FF;" text="Edit Operating Hours" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

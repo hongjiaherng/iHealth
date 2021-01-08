@@ -120,38 +120,43 @@ public class Patient {
         return remarks;
     }
 
-    // toString()
     @Override
     public String toString() {
-        return "Patient{" + "id=" + id +
-                ", username=" + username +
-                ", password=" + password +
-                ", name=" + name +
-                ", icNo=" + icNo +
-                ", email=" + email +
-                ", phoneNum=" + phoneNum +
-                "}";
+        return "Patient{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", icNo='" + icNo + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", reason=" + reason +
+                ", confirmDate=" + confirmDate +
+                ", bookedTime=" + bookedTime +
+                ", remarks=" + remarks +
+                '}';
     }
 
-    // equals()
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) && Objects.equals(username, patient.username)
-                && Objects.equals(password, patient.password) && Objects.equals(name, patient.name)
-                && Objects.equals(icNo, patient.icNo) && Objects.equals(email, patient.email)
-                && Objects.equals(phoneNum, patient.phoneNum);
+        return Objects.equals(id, patient.id) &&
+                Objects.equals(username, patient.username) &&
+                Objects.equals(password, patient.password) &&
+                Objects.equals(name, patient.name) &&
+                Objects.equals(icNo, patient.icNo) &&
+                Objects.equals(email, patient.email) &&
+                Objects.equals(phoneNum, patient.phoneNum) &&
+                Objects.equals(reason, patient.reason) &&
+                Objects.equals(confirmDate, patient.confirmDate) &&
+                Objects.equals(bookedTime, patient.bookedTime) &&
+                Objects.equals(remarks, patient.remarks);
     }
 
-    // hashcode()
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, name, icNo, email, phoneNum);
+        return Objects.hash(id, username, password, name, icNo, email, phoneNum, reason, confirmDate, bookedTime, remarks);
     }
 }

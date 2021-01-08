@@ -26,7 +26,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PatientCheckAppointmentController implements Initializable {
-    
+
     @FXML
     private MenuItem cancelMenuItem;
     @FXML

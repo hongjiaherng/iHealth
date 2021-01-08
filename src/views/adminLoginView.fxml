@@ -12,15 +12,17 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminLoginController">
    <children>
-      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="16.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/baseline_keyboard_backspace_black_18dp.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="32.0" layoutY="12.0" mnemonicParsing="false" onAction="#backToUserLoginButtonOnAction" style="-fx-background-color: transparent;" text="back to USER LOGIN page">
+      <Button layoutX="4.0" layoutY="7.0" mnemonicParsing="false" onAction="#backToPatientLoginButtonOnAction" style="-fx-background-color: transparent;" text="back to PATIENT LOGIN page">
          <font>
             <Font name="System Bold" size="12.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/images/baseline_keyboard_backspace_black_18dp.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="62.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/hospital.png" />
@@ -36,28 +38,33 @@
             <Font name="Arial Bold" size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="adminidTextField" layoutX="346.0" layoutY="207.0" promptText="Admin ID" />
-      <PasswordField fx:id="passwordField" layoutX="346.0" layoutY="262.0" promptText="Password" />
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="adminIdTextField" layoutX="346.0" layoutY="227.0" promptText="Admin ID" />
+      <PasswordField fx:id="passwordField" layoutX="346.0" layoutY="267.0" promptText="Password" />
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/baseline_account_circle_black_18dp.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="262.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="309.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/baseline_https_black_18dp.png" />
          </image>
       </ImageView>
-      <Button defaultButton="true" layoutX="397.0" layoutY="324.0" mnemonicParsing="false" onAction="#loginButtonOnAction" style="-fx-background-color: #3385FF;" text="Login" textFill="WHITE">
+      <Button defaultButton="true" layoutX="359.0" layoutY="332.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefWidth="122.0" style="-fx-background-color: #3385FF;" text="Login" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <ImageView fitHeight="140.0" fitWidth="190.0" layoutX="356.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="140.0" fitWidth="190.0" layoutX="349.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../res/images/teamwork.png" />
          </image>
       </ImageView>
-      <Label fx:id="loginErrorLabel" alignment="CENTER" layoutX="305.0" layoutY="299.0" prefHeight="19.0" prefWidth="242.0" textFill="RED" />
+      <Label fx:id="loginErrorLabel" alignment="CENTER" layoutX="298.0" layoutY="305.0" prefHeight="19.0" prefWidth="242.0" textFill="RED" />
+      <Label layoutX="344.0" layoutY="30.0" text="Admin Login">
+         <font>
+            <Font name="Arial Bold" size="25.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
