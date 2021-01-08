@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -11,71 +11,75 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClinicDetailsController">
    <children>
-      <Button layoutX="25.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Edit" textFill="WHITE" AnchorPane.bottomAnchor="10.600000000000023" AnchorPane.leftAnchor="25.0">
+      <Button alignment="CENTER" layoutX="99.0" layoutY="351.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #34a34c;" text="Edit" textFill="WHITE" AnchorPane.bottomAnchor="18.600000000000023" AnchorPane.leftAnchor="99.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="81.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="10.600000000000023" AnchorPane.leftAnchor="81.0">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="26.0" layoutY="351.0" mnemonicParsing="false" prefWidth="55.0" style="-fx-background-color: #3385FF;" text="Add" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="18.600000000000023" AnchorPane.leftAnchor="26.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="142.0" layoutY="359.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Back to Admin Page" textFill="WHITE" AnchorPane.bottomAnchor="10.600000000000023" AnchorPane.leftAnchor="142.0">
+      <Button alignment="CENTER" layoutX="526.0" layoutY="351.0" mnemonicParsing="false" onAction="#backAdminMainPage" prefWidth="55.0" style="-fx-background-color: #bd2c00;" text="Back" textFill="WHITE" AnchorPane.bottomAnchor="18.600000000000023" AnchorPane.leftAnchor="526.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <TableView editable="true" layoutX="12.0" layoutY="67.0" prefHeight="282.0" prefWidth="578.0" style="-fx-background-color: #E0FBFF; -fx-border-color: black; -fx-font-family: System;" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="67.0">
+      <TableView editable="true" layoutX="19.0" layoutY="126.0" prefHeight="205.0" prefWidth="563.0" style="-fx-background-color: #E0FBFF; -fx-border-color: black; -fx-font-family: System;" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="126.0">
         <columns>
-          <TableColumn maxWidth="3000.0" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Date" />
-          <TableColumn style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Opening Time " />
-            <TableColumn style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Closing  Time" />
-            <TableColumn style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Break Time" />
-            <TableColumn maxWidth="6000.0" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Remark" />
+          <TableColumn maxWidth="3000.0" prefWidth="175.99996948242188" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Date" />
+          <TableColumn prefWidth="236.79998779296875" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Opening Time " />
+            <TableColumn prefWidth="226.4000244140625" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Closing Time" />
+            <TableColumn maxWidth="6000.0" prefWidth="103.199951171875" style="-fx-background-color: #8CF0FF; -fx-border-color: #3385FF; -fx-font-family: System;" text="Remark" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <MenuButton layoutX="399.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Month" textFill="WHITE" AnchorPane.leftAnchor="399.0" AnchorPane.topAnchor="18.0">
-        <items>
-          <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="January" />
-          <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="February" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="March" />
-          <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="April" />
-          <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="May" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="June" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="July" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="August" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="September" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="October" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="November" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="December" />
-        </items>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </MenuButton>
-      <MenuButton layoutX="501.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #3385FF;" text="Year" textFill="WHITE" AnchorPane.leftAnchor="501.0" AnchorPane.topAnchor="18.0">
-        <items>
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="2020" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="2019" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="2018" />
-            <MenuItem mnemonicParsing="false" style="-fx-border-color: black; -fx-background-color: pink;" text="2017" />
-        </items>
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </MenuButton>
-      <Label layoutX="70.0" layoutY="6.0" prefHeight="50.0" prefWidth="222.0" text="Clinic Details" textFill="#161616" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="6.0">
+      <Label layoutX="13.0" layoutY="5.0" prefHeight="60.0" prefWidth="300.0" text="Clinic Details" textFill="#161616" AnchorPane.leftAnchor="13.0" AnchorPane.topAnchor="5.0">
          <font>
             <Font name="Arial Black" size="30.0" />
          </font>
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../res/images/iconfinder_SEO_blog_optimation_article_3059895.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Label>
-      <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="12.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../res/images/iconfinder_SEO_blog_optimation_article_3059895.png" />
-         </image>
-      </ImageView>
+      <ChoiceBox layoutX="470.0" layoutY="86.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F9D71C;" />
+      <ChoiceBox layoutX="346.0" layoutY="86.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F9D71C;" />
+      <Label alignment="CENTER" layoutX="335.0" layoutY="62.0" prefHeight="26.0" prefWidth="58.0" text="Year" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label alignment="CENTER" layoutX="465.0" layoutY="63.0" prefHeight="26.0" prefWidth="58.0" text="Month" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Label>
+      <Label layoutX="25.0" layoutY="67.0" prefHeight="30.0" prefWidth="214.0" text="Default operating hours:" wrapText="true">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="91.0" prefHeight="30.0" prefWidth="182.0" text="0800 - 1800 (everyday)" wrapText="true">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </Label>
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="351.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #F9D71C;" text="Clear Filters" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

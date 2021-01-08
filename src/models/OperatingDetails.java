@@ -7,6 +7,7 @@ public class OperatingDetails {
     private String date;
     private String openingTime;
     private String closingTime;
+    private String remark;
 
     public String getDate() {
         return date;
@@ -32,12 +33,21 @@ public class OperatingDetails {
         this.closingTime = closingTime;
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     @Override
     public String toString() {
         return "OperatingDetails{" +
                 "date='" + date + '\'' +
                 ", openingTime='" + openingTime + '\'' +
                 ", closingTime='" + closingTime + '\'' +
+                ", remark='" + remark + '\'' +
                 '}';
     }
 
@@ -48,11 +58,12 @@ public class OperatingDetails {
         OperatingDetails that = (OperatingDetails) o;
         return Objects.equals(date, that.date) &&
                 Objects.equals(openingTime, that.openingTime) &&
-                Objects.equals(closingTime, that.closingTime);
+                Objects.equals(closingTime, that.closingTime) &&
+                Objects.equals(remark, that.remark);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, openingTime, closingTime);
+        return Objects.hash(date, openingTime, closingTime, remark);
     }
 }
