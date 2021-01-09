@@ -12,7 +12,7 @@ import java.io.IOException;
     public class BookSuccessController {
 
         @FXML
-        public void backOnAction(javafx.event.ActionEvent actionEvent) throws IOException {
+        private void backOnAction(javafx.event.ActionEvent actionEvent) throws IOException {
             Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
             Scene patientMainPageScene = new Scene(patientMainPageRoot);
             Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

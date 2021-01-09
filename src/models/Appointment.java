@@ -2,6 +2,8 @@ package models;
 
 import java.util.Objects;
 
+// Not a POJO class
+
 public class Appointment {
 
     private String username;

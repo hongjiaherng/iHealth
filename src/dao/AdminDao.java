@@ -17,11 +17,6 @@ public class AdminDao{
 
     public static Admin findAdmin(String adminId, String password) {
 
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB is not properly set (AdminDao)");
-            return null;
-        }
-
         MongoCollection<Admin> adminsCollection = ihealthDB.getCollection("admins", Admin.class);
         Admin admin = adminsCollection.find(eq("adminId", adminId)).first();
         System.out.println("Admin found:\t" + admin);

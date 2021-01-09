@@ -30,7 +30,7 @@ public class PatientLoginController {
     private PasswordField passwordField;
 
     @FXML
-    public void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             loginErrorLabel.setText("Username and Password cannot be empty!");
         } else if (!validateLogin()) {
@@ -38,7 +38,7 @@ public class PatientLoginController {
         } else {
             loginErrorLabel.setText("");
 
-            PauseTransition delay = new PauseTransition(Duration.millis(1000));
+            PauseTransition delay = new PauseTransition(Duration.millis(500));
             delay.setOnFinished(
                     e -> {
                         // Back to login page
@@ -59,7 +59,7 @@ public class PatientLoginController {
     }
 
     @FXML
-    public void createAccButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void createAccButtonOnAction(ActionEvent actionEvent) throws IOException {
         // Switch to account registration here
         Parent accountRegisterRoot = FXMLLoader.load(getClass().getResource("../views/patientRegistrationView.fxml"));
         Scene accountRegisterScene = new Scene(accountRegisterRoot);

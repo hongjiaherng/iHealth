@@ -77,7 +77,7 @@ public class PatientCheckAppointmentController implements Initializable {
     }
 
     @FXML
-    public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent checkAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
         Scene checkAppointmentScene = new Scene(checkAppointmentRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -86,7 +86,7 @@ public class PatientCheckAppointmentController implements Initializable {
     }
 
     @FXML
-    public void rightClickToDelete(MouseEvent mouseEvent) {
+    private void rightClickToDelete(MouseEvent mouseEvent) {
         if (!obList.isEmpty()) {
             if (mouseEvent.getButton() == MouseButton.SECONDARY) {
                 cancelMenuItem.setOnAction(e -> {
@@ -100,7 +100,7 @@ public class PatientCheckAppointmentController implements Initializable {
     }
 
     @FXML
-    public void deleteAppointmentOnAction(ActionEvent actionEvent) {
+    private void deleteAppointmentOnAction(ActionEvent actionEvent) {
         if (table.getSelectionModel().getSelectedItem() != null) {
             deleteConfirmation();
         } else {

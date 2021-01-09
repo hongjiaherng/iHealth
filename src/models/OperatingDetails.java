@@ -2,6 +2,8 @@ package models;
 
 import java.util.Objects;
 
+// POJO class
+
 public class OperatingDetails {
 
     private String date;
@@ -13,32 +15,36 @@ public class OperatingDetails {
         return date;
     }
 
-    public void setDate(String date) {
+    public OperatingDetails setDate(String date) {
         this.date = date;
+        return this;
     }
 
     public String getOpeningTime() {
         return openingTime;
     }
 
-    public void setOpeningTime(String openingTime) {
+    public OperatingDetails setOpeningTime(String openingTime) {
         this.openingTime = openingTime;
+        return this;
     }
 
     public String getClosingTime() {
         return closingTime;
     }
 
-    public void setClosingTime(String closingTime) {
+    public OperatingDetails setClosingTime(String closingTime) {
         this.closingTime = closingTime;
+        return this;
     }
 
     public String getRemark() {
         return remark;
     }
 
-    public void setRemark(String remark) {
+    public OperatingDetails setRemark(String remark) {
         this.remark = remark;
+        return this;
     }
 
     @Override

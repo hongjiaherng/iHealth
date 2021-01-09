@@ -4,17 +4,14 @@ package dao;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
-import com.mongodb.client.result.UpdateResult;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import models.Appointment;
+import models.OperatingDetails;
 import models.Patient;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import utils.DBConnection;
-import utils.SessionManager;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.*;
@@ -22,15 +19,10 @@ import static com.mongodb.client.model.Filters.*;
 public class PatientDao {
 
     private static final MongoDatabase ihealthDB = DBConnection.getConnection();
+    private static final MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
 
     public static Patient findPatient(String username, String password) {
 
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB is not properly set (PatientDao)");
-            return null;
-        }
-
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient patient = patientsCollection.find((eq("username", username))).first();
 
         if (patient == null) {
@@ -47,24 +39,12 @@ public class PatientDao {
 
     public static boolean isExist(String icNo, String username) {
 
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB is not properly set (PatientDao)");
-            return true;
-        }
-
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient patient = patientsCollection.find(or(eq("icNo", icNo), eq("username", username))).first();
 
-        if (patient == null) {
-            return false;
-        }
-
-        return true;
+        return patient != null;
     }
 
     public static void createPatient(List<String> patientInfo, List<ArrayList<String>> patientBook) {
-        MongoCollection<Patient> patientCollection = ihealthDB.getCollection("patients", Patient.class);
-
         // Create instance
         Argon2 argon2 = Argon2Factory.create();
 
@@ -87,7 +67,7 @@ public class PatientDao {
                     .setReason(patientBook.get(2))
                     .setRemarks(patientBook.get(3));
 
-            patientCollection.insertOne(newPatient);
+            patientsCollection.insertOne(newPatient);
             System.out.println("Patient inserted");
 
         } finally {
@@ -97,53 +77,30 @@ public class PatientDao {
     }
 
     public static boolean isAvailable(String date, String time) {
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB to find book date is not properly set (PatientDao)");
-            return false;
-        }
-
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient newPatient = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
-
-        if (newPatient == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return newPatient == null;
     }
 
-    public static Patient bookAppointment(String username, String date, String time, String reason) {
-
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB to save booked date is not properly set (PatientDao)");
-            return null;
-        }
-
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
-        Patient newPatient = patientsCollection.find(eq("username", username)).first();
+    public static Patient bookAppointment(Appointment appointment) {
+        Patient newPatient = patientsCollection.find(eq("username", appointment.getUsername())).first();
 
         if (newPatient == null) {
             return null;
         } else {
-            newPatient.setBookedTime(List.of(time)).setConfirmDate(List.of(date)).setReason(List.of(reason)).setRemarks(List.of(""));
-            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("bookedTime", List.of(time)));
-            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("confirmDate", List.of(date)));
-            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("reason", List.of(reason)));
-            patientsCollection.findOneAndUpdate(Filters.eq("username", username),Updates.pushEach("remarks", List.of("")));
+            newPatient.setBookedTime(List.of(appointment.getBookedTime())).
+                    setConfirmDate(List.of(appointment.getConfirmDate())).
+                    setReason(List.of(appointment.getReason())).
+                    setRemarks(List.of(appointment.getRemarks()));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", appointment.getUsername()),Updates.pushEach("bookedTime", List.of(appointment.getBookedTime())));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", appointment.getUsername()),Updates.pushEach("confirmDate", List.of(appointment.getConfirmDate())));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", appointment.getUsername()),Updates.pushEach("reason", List.of(appointment.getReason())));
+            patientsCollection.findOneAndUpdate(Filters.eq("username", appointment.getUsername()),Updates.pushEach("remarks", List.of(appointment.getRemarks())));
             return newPatient;
         }
     }
 
     public static Patient findAppointment(String username) {
-
-        if (ihealthDB == null) {
-            System.out.println("Connection to MongoDB is not properly set (PatientDao)");
-            return null;
-        }
-
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient currentPatient = patientsCollection.find(eq("username", username)).first();
-
         return currentPatient;
     }
 
@@ -155,7 +112,6 @@ public class PatientDao {
         String reason = appointment.getReason();
         String remarks = appointment.getRemarks();
 
-        MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
         Patient existingPatient = patientsCollection.find(eq("username", username)).first();
 
         if (existingPatient != null) {
@@ -172,7 +128,9 @@ public class PatientDao {
         }
         return existingPatient;
     }
+
+    public static boolean dateIsBooked(OperatingDetails operatingDetails) {
+        Patient existingPatient = patientsCollection.find(eq("confirmDate", operatingDetails.getDate())).first();
+        return existingPatient != null;
+    }
 }
-
-
-

@@ -27,7 +27,7 @@ public class AdminLoginController {
     private PasswordField passwordField;
 
     @FXML
-    public void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (adminIdTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             loginErrorLabel.setText("Admin ID and Password cannot be empty!");
         } else if (!validateLogin()) {
@@ -35,7 +35,7 @@ public class AdminLoginController {
         } else {
             loginErrorLabel.setText("");
 
-            PauseTransition delay = new PauseTransition(Duration.millis(1000));
+            PauseTransition delay = new PauseTransition(Duration.millis(500));
             delay.setOnFinished(e -> {
                         try {
                             // Switch to admin main page here
@@ -54,7 +54,7 @@ public class AdminLoginController {
     }
 
     @FXML
-    public void backToPatientLoginButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void backToPatientLoginButtonOnAction(ActionEvent actionEvent) throws IOException {
         // Switch to User Login page here
         Parent userLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         Scene userLoginScene = new Scene(userLoginRoot);

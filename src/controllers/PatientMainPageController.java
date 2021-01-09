@@ -26,7 +26,8 @@ public class PatientMainPageController implements Initializable {
         welcomeLabel.setText("Welcome, " + SessionManager.getSessionUser().getName() + "!");
     }
 
-    public void logoutOnAction(ActionEvent actionEvent) throws IOException {
+    @FXML
+    private void logoutOnAction(ActionEvent actionEvent) throws IOException {
         Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         Scene patientLoginScene = new Scene(patientLoginRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -34,7 +35,8 @@ public class PatientMainPageController implements Initializable {
         appStage.show();
     }
 
-    public void makeReservationOnAction(MouseEvent actionEvent) throws IOException {
+    @FXML
+    private void makeReservationOnAction(MouseEvent actionEvent) throws IOException {
         Parent makeAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMakeAppointmentView.fxml"));
         Scene makeAppointmentScene = new Scene(makeAppointmentRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -42,7 +44,8 @@ public class PatientMainPageController implements Initializable {
         appStage.show();
     }
 
-    public void checkDetailsOnAction(MouseEvent actionEvent) throws IOException {
+    @FXML
+    private void checkDetailsOnAction(MouseEvent actionEvent) throws IOException {
         Parent checkDetailsRoot = FXMLLoader.load(getClass().getResource("../views/patientCheckAppointmentView.fxml"));
         Scene checkDetailsScene = new Scene(checkDetailsRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

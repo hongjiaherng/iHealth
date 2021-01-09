@@ -37,7 +37,8 @@ public class PatientRegistrationController {
     @FXML
     private Label errorMessageLabel;
 
-    public void confirmButtonOnAction(ActionEvent actionEvent) {
+    @FXML
+    private void confirmButtonOnAction(ActionEvent actionEvent) {
         if (!(nameTextField.getText().isEmpty() || icNoTextField.getText().isEmpty() ||
                 emailTextField.getText().isEmpty() || phoneNumTextField.getText().isEmpty() ||
                 usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty() ||
@@ -79,7 +80,7 @@ public class PatientRegistrationController {
                     errorMessageLabel.setTextFill(Color.rgb(12, 12, 101));
                     errorMessageLabel.setText("Account registered successfully!");
 
-                    PauseTransition delay = new PauseTransition(Duration.millis(1000));
+                    PauseTransition delay = new PauseTransition(Duration.millis(500));
                     delay.setOnFinished(
                             e -> {
                                 // Back to login page
@@ -107,7 +108,7 @@ public class PatientRegistrationController {
         }
     }
 
-    public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
+    private void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         Scene patientLoginScene = new Scene(patientLoginRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

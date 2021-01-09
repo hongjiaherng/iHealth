@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+// POJO class
+
 public class Patient {
 
     private ObjectId id;

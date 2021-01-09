@@ -4,6 +4,8 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
+// POJO class
+
 public class Admin {
 
     private ObjectId id;
