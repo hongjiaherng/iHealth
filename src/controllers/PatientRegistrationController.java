@@ -108,6 +108,7 @@ public class PatientRegistrationController {
         }
     }
 
+    @FXML
     private void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         Scene patientLoginScene = new Scene(patientLoginRoot);

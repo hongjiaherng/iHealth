@@ -41,4 +41,13 @@ public class OperatingDetailsDao {
         operatingDetailsCollection.insertOne(operatingDetails);
         System.out.println("Operating details inserted");
     }
+
+    public static void editOperatingHours(OperatingDetails previousVer, OperatingDetails newVer) {
+        String date = previousVer.getDate();
+        OperatingDetails previousOperatingDetails = operatingDetailsCollection.findOneAndReplace(eq("date", date), newVer);
+    }
+
+    public static void deleteOperatingDetails(OperatingDetails previousVer) {
+        OperatingDetails deletedOperatingDetails = operatingDetailsCollection.findOneAndDelete(eq("date", previousVer.getDate()));
+    }
 }

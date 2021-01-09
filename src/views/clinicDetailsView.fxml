@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../res/styles/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ClinicDetailsController">
    <children>
-      <Button alignment="CENTER" layoutX="99.0" layoutY="351.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #34a34c;" text="Edit" textFill="WHITE" AnchorPane.bottomAnchor="18.600000000000023" AnchorPane.leftAnchor="99.0">
+      <Button alignment="CENTER" layoutX="99.0" layoutY="351.0" mnemonicParsing="false" onAction="#editOperatingHours" prefHeight="30.0" prefWidth="55.0" style="-fx-background-color: #34a34c;" text="Edit" textFill="WHITE" AnchorPane.bottomAnchor="18.600000000000023" AnchorPane.leftAnchor="99.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
@@ -48,8 +48,8 @@
             </ImageView>
          </graphic>
       </Label>
-      <ChoiceBox layoutX="470.0" layoutY="86.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F9D71C;" />
-      <ChoiceBox layoutX="346.0" layoutY="86.0" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F9D71C;" />
+      <ChoiceBox fx:id="monthChoiceBox" layoutX="470.0" layoutY="86.0" onAction="#choiceBoxClicked" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F4F1D6;" />
+      <ChoiceBox fx:id="yearChoiceBox" layoutX="346.0" layoutY="86.0" onAction="#choiceBoxClicked" prefHeight="26.0" prefWidth="111.0" style="-fx-background-color: #F4F1D6;" />
       <Label alignment="CENTER" layoutX="335.0" layoutY="62.0" prefHeight="26.0" prefWidth="58.0" text="Year" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -76,7 +76,7 @@
             <Font name="Calibri" size="14.0" />
          </font>
       </Label>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="351.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #F9D71C;" text="Clear Filters" textAlignment="CENTER">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="351.0" mnemonicParsing="false" onAction="#clearYearMonthFilter" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #F9D71C;" text="Clear Filters" textAlignment="CENTER">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

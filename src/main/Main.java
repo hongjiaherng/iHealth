@@ -1,5 +1,6 @@
 package main;
 
+import dao.CurrentOnlineUserDao;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -28,6 +29,7 @@ public class Main extends Application {
 
     @Override
     public void stop() {
+        CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
         DBConnection.stopConnection();
         SessionManager.destroySession();
     }

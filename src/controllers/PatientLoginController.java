@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.CurrentOnlineUserDao;
 import dao.PatientDao;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class PatientLoginController {
 
@@ -33,9 +35,7 @@ public class PatientLoginController {
     private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             loginErrorLabel.setText("Username and Password cannot be empty!");
-        } else if (!validateLogin()) {
-            loginErrorLabel.setText("Invalid Username or Password");
-        } else {
+        } else if (validateLogin()) {
             loginErrorLabel.setText("");
 
             PauseTransition delay = new PauseTransition(Duration.millis(500));
@@ -76,9 +76,14 @@ public class PatientLoginController {
 
         if (validatedPatient == null) {
             Logger.loginFailure(username);
+            loginErrorLabel.setText("Invalid Username or Password");
             return false;
         }
-
+        if (CurrentOnlineUserDao.isOnline(username)) {
+            loginErrorLabel.setText("You had already signed into the system");
+            return false;
+        }
+        CurrentOnlineUserDao.createOnlineUser(username, LocalDateTime.now().toString());
         SessionManager.setSessionUser(validatedPatient);
         Logger.loginSuccess(username);
         return true;

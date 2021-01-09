@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.CurrentOnlineUserDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,6 +29,7 @@ public class PatientMainPageController implements Initializable {
 
     @FXML
     private void logoutOnAction(ActionEvent actionEvent) throws IOException {
+        CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
         Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
         Scene patientLoginScene = new Scene(patientLoginRoot);
         Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
