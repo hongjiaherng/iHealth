@@ -15,6 +15,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -119,6 +120,7 @@ public class ClinicDetailsController implements Initializable {
             initRecords();
         } else {
             Alert errorAlert = new Alert(Alert.AlertType.WARNING);
+            ((Stage) errorAlert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(ClinicDetailsController.class.getResourceAsStream("../res/images/patient.png")));
             errorAlert.setContentText("Please select a record");
             errorAlert.show();
         }

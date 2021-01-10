@@ -10,9 +10,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import main.Main;
 import models.Appointment;
 import models.Patient;
 import utils.SessionManager;
@@ -101,6 +103,7 @@ public class PatientCheckAppointmentController implements Initializable {
         Appointment item = table.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image(PatientCheckAppointmentController.class.getResourceAsStream("../res/images/patient.png")));
         alert.setTitle("Cancel Appointment");
         alert.setHeaderText("Confirm to cancel appointment?");
         alert.setContentText(String.format("Appointment details\n\n%10s : %s\n%10s : %s\n%8s : %s", "Date", item.getConfirmDate(), "Time", item.getBookedTime(), "Reason", item.getReason()));
@@ -120,7 +123,6 @@ public class PatientCheckAppointmentController implements Initializable {
         Patient currentPatient = PatientDao.findAppointments(username);
 
         if (listAppointmentRadioButton.isSelected()) {
-            System.out.println("im selected");
             table.getItems().clear();
             List<LocalDate> datesWithinAWeek = PatientDao.findDatesWithinAWeek(username, LocalDate.now());
 
@@ -150,7 +152,6 @@ public class PatientCheckAppointmentController implements Initializable {
             }
 
         } else {
-            System.out.println("Im not selected");
             loadAppointments(currentPatient);
         }
     }
