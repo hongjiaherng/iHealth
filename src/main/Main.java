@@ -29,7 +29,9 @@ public class Main extends Application {
 
     @Override
     public void stop() {
-        CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
+        if (SessionManager.getSessionUser() != null) {
+            CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
+        }
         DBConnection.stopConnection();
         SessionManager.destroySession();
     }

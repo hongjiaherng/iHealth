@@ -22,11 +22,15 @@ import javafx.fxml.FXML;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class PatientCheckAppointmentController implements Initializable {
 
+    @FXML
+    private RadioButton listAppointmentRadioButton;
     @FXML
     private MenuItem cancelMenuItem;
     @FXML
@@ -52,27 +56,10 @@ public class PatientCheckAppointmentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         String username = SessionManager.getSessionUser().getUsername();
-        Patient currentPatient = PatientDao.findAppointment(username);
+        Patient currentPatient = PatientDao.findAppointments(username);
 
         if (currentPatient != null) {
-            for (int i = 0; i < currentPatient.getReason().size(); i++) {
-                String reason = currentPatient.getReason().get(i);
-                String confirmDate = currentPatient.getConfirmDate().get(i);
-                String bookedTime = currentPatient.getBookedTime().get(i);
-                String remark = currentPatient.getRemarks().get(i);
-
-                Appointment appointment = new Appointment(username, reason, confirmDate, bookedTime, remark);
-
-                obList.add(appointment);
-
-                usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
-                reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
-                confirmDateCol.setCellValueFactory(new PropertyValueFactory<>("confirmDate"));
-                bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
-                remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
-
-                table.setItems(obList);
-            }
+            loadAppointments(currentPatient);
         }
     }
 
@@ -96,7 +83,6 @@ public class PatientCheckAppointmentController implements Initializable {
         } else {
             cancelMenuItem.setDisable(true);
         }
-
     }
 
     @FXML
@@ -125,6 +111,69 @@ public class PatientCheckAppointmentController implements Initializable {
                 table.getItems().remove(item);
                 Patient patient = PatientDao.removeSelectedAppointment(item);
             }
+        }
+    }
+
+    public void listAppointmentInAWeek(ActionEvent actionEvent) {
+
+        String username = SessionManager.getSessionUser().getUsername();
+        Patient currentPatient = PatientDao.findAppointments(username);
+
+        if (listAppointmentRadioButton.isSelected()) {
+            System.out.println("im selected");
+            table.getItems().clear();
+            List<LocalDate> datesWithinAWeek = PatientDao.findDatesWithinAWeek(username, LocalDate.now());
+
+            if (currentPatient != null) {
+                for (int i = 0; i < currentPatient.getReason().size(); i++) {
+                    String reason = currentPatient.getReason().get(i);
+                    String confirmDate = currentPatient.getConfirmDate().get(i);
+                    String bookedTime = currentPatient.getBookedTime().get(i);
+                    String remark = currentPatient.getRemarks().get(i);
+
+                    for (LocalDate appointmentDate: datesWithinAWeek) {
+                        if (appointmentDate.toString().equals(confirmDate)) {
+                            Appointment appointment = new Appointment(username, reason, confirmDate, bookedTime, remark);
+
+                            obList.add(appointment);
+
+                            usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+                            reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
+                            confirmDateCol.setCellValueFactory(new PropertyValueFactory<>("confirmDate"));
+                            bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
+                            remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+
+                            table.setItems(obList);
+                        }
+                    }
+                }
+            }
+
+        } else {
+            System.out.println("Im not selected");
+            loadAppointments(currentPatient);
+        }
+    }
+
+    private void loadAppointments(Patient currentPatient) {
+        table.getItems().clear();
+        for (int i = 0; i < currentPatient.getReason().size(); i++) {
+            String reason = currentPatient.getReason().get(i);
+            String confirmDate = currentPatient.getConfirmDate().get(i);
+            String bookedTime = currentPatient.getBookedTime().get(i);
+            String remark = currentPatient.getRemarks().get(i);
+
+            Appointment appointment = new Appointment(currentPatient.getUsername(), reason, confirmDate, bookedTime, remark);
+
+            obList.add(appointment);
+
+            usernameCol.setCellValueFactory(new PropertyValueFactory<>("username"));
+            reasonCol.setCellValueFactory(new PropertyValueFactory<>("reason"));
+            confirmDateCol.setCellValueFactory(new PropertyValueFactory<>("confirmDate"));
+            bookedTimeCol.setCellValueFactory(new PropertyValueFactory<>("bookedTime"));
+            remarksCol.setCellValueFactory(new PropertyValueFactory<>("remarks"));
+
+            table.setItems(obList);
         }
     }
 }

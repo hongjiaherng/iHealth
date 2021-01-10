@@ -1,6 +1,7 @@
 package dao;
 
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
@@ -11,7 +12,10 @@ import models.OperatingDetails;
 import models.Patient;
 import org.bson.Document;
 import utils.DBConnection;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.*;
@@ -99,7 +103,7 @@ public class PatientDao {
         }
     }
 
-    public static Patient findAppointment(String username) {
+    public static Patient findAppointments(String username) {
         Patient currentPatient = patientsCollection.find(eq("username", username)).first();
         return currentPatient;
     }
@@ -132,5 +136,26 @@ public class PatientDao {
     public static boolean dateIsBooked(OperatingDetails operatingDetails) {
         Patient existingPatient = patientsCollection.find(eq("confirmDate", operatingDetails.getDate())).first();
         return existingPatient != null;
+    }
+
+    public static List<LocalDate> findDatesWithinAWeek(String username, LocalDate currentDate) {
+
+        Patient existingPatient = patientsCollection.find(eq("username", username)).first();
+        List<LocalDate> datesWithinAWeek = new ArrayList<>();
+
+        if (existingPatient != null) {
+            List<String> allConfirmDate = existingPatient.getConfirmDate();
+
+            for (String date : allConfirmDate) {
+                // check if date is within the currentDate to the next 7 days
+                LocalDate appointmentDate = LocalDate.parse(date);
+                LocalDate curentWeek = currentDate.plusWeeks(1);
+                if (currentDate.compareTo(appointmentDate) <= 0 && appointmentDate.compareTo(curentWeek) < 0) {
+                    // It's within the next 7 days
+                    datesWithinAWeek.add(appointmentDate);
+                }
+            }
+        }
+        return datesWithinAWeek;
     }
 }
