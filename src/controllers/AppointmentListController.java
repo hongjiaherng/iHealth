@@ -104,7 +104,7 @@ public class AppointmentListController implements Initializable{
             selectedItem = table.getSelectionModel().getSelectedItem();
 
             Stage editAppointmentListWindow = new Stage();
-            Parent editOperatingHoursRoot = FXMLLoader.load(getClass().getResource("C:\\Users\\lebro\\OneDrive\\Desktop\\FOP Group Assignment\\iHealth\\src\\views\\editAppointmentListView.fxml"));
+            Parent editOperatingHoursRoot = FXMLLoader.load(getClass().getResource("../views/editAppointmentListView.fxml"));
             Scene editAppointmentListScene = new Scene(editOperatingHoursRoot);
             editAppointmentListWindow.setTitle("iHealth - Edit Appointment List");
             editAppointmentListWindow.setScene(editAppointmentListScene);
