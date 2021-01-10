@@ -1,7 +1,6 @@
 package controllers;
 
 import dao.AdminDao;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import models.Admin;
 
 import java.io.IOException;
@@ -34,22 +32,12 @@ public class AdminLoginController {
             loginErrorLabel.setText("Invalid Admin ID or Password");
         } else {
             loginErrorLabel.setText("");
-
-            PauseTransition delay = new PauseTransition(Duration.millis(500));
-            delay.setOnFinished(e -> {
-                        try {
-                            // Switch to admin main page here
-                            Parent adminMainPageRoot = FXMLLoader.load(getClass().getResource("../views/adminMainPageView.fxml"));
-                            Scene adminMainPageScene = new Scene(adminMainPageRoot);
-                            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                            appStage.setScene(adminMainPageScene);
-                            appStage.show();
-                        } catch (IOException ioException) {
-                            System.out.println("Unable to load FXML file");
-                        }
-                    }
-            );
-            delay.play();
+            // Switch to admin main page here
+            Parent adminMainPageRoot = FXMLLoader.load(getClass().getResource("../views/adminMainPageView.fxml"));
+            Scene adminMainPageScene = new Scene(adminMainPageRoot);
+            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            appStage.setScene(adminMainPageScene);
+            appStage.show();
         }
     }
 

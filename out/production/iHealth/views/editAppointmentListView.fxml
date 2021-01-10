@@ -28,8 +28,8 @@
    <center>
       <AnchorPane prefHeight="236.0" prefWidth="395.0" style="-fx-background-color: #AFCC8C;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="124.0" layoutY="274.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #1C2E4A;" text="Save" textFill="WHITE" />
-            <Button layoutX="211.0" layoutY="274.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #bd2c00;" text="Cancel" textFill="WHITE" />
+            <Button defaultButton="true" layoutX="124.0" layoutY="274.0" mnemonicParsing="false" onAction="#save" style="-fx-background-color: #1C2E4A;" text="Save" textFill="WHITE" />
+            <Button cancelButton="true" layoutX="211.0" layoutY="274.0" mnemonicParsing="false" onAction="#cancel" style="-fx-background-color: #bd2c00;" text="Cancel" textFill="WHITE" />
             <Label layoutX="62.0" layoutY="61.0" text="Time">
                <font>
                   <Font size="14.0" />

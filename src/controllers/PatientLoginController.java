@@ -2,13 +2,11 @@ package controllers;
 
 import dao.CurrentOnlineUserDao;
 import dao.PatientDao;
-import javafx.animation.PauseTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import models.Patient;
 import utils.Logger;
 import utils.SessionManager;
@@ -37,24 +35,12 @@ public class PatientLoginController {
             loginErrorLabel.setText("Username and Password cannot be empty!");
         } else if (validateLogin()) {
             loginErrorLabel.setText("");
-
-            PauseTransition delay = new PauseTransition(Duration.millis(500));
-            delay.setOnFinished(
-                    e -> {
-                        // Back to login page
-                        try {
-                            // Switch to patient dashboard here
-                            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
-                            Scene patientMainPageScene = new Scene(patientMainPageRoot);
-                            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // obtain the current stage (in the patientloginview)
-                            appStage.setScene(patientMainPageScene); // set the scene of the obtained stage into the new scene
-                            appStage.show();
-                        } catch (IOException ioException) {
-                            System.out.println("Unable to load FXML file");
-                        }
-                    }
-            );
-            delay.play();
+            // Switch to patient dashboard here
+            Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
+            Scene patientMainPageScene = new Scene(patientMainPageRoot);
+            Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow(); // obtain the current stage (in the patientloginview)
+            appStage.setScene(patientMainPageScene); // set the scene of the obtained stage into the new scene
+            appStage.show();
         }
     }
 

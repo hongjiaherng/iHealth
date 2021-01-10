@@ -1,7 +1,6 @@
 package controllers;
 
 import dao.PatientDao;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +12,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,7 +36,7 @@ public class PatientRegistrationController {
     private Label errorMessageLabel;
 
     @FXML
-    private void confirmButtonOnAction(ActionEvent actionEvent) {
+    private void confirmButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (!(nameTextField.getText().isEmpty() || icNoTextField.getText().isEmpty() ||
                 emailTextField.getText().isEmpty() || phoneNumTextField.getText().isEmpty() ||
                 usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty() ||
@@ -80,22 +78,11 @@ public class PatientRegistrationController {
                     errorMessageLabel.setTextFill(Color.rgb(12, 12, 101));
                     errorMessageLabel.setText("Account registered successfully!");
 
-                    PauseTransition delay = new PauseTransition(Duration.millis(500));
-                    delay.setOnFinished(
-                            e -> {
-                                // Back to login page
-                                try {
-                                    Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
-                                    Scene patientLoginScene = new Scene(patientLoginRoot);
-                                    Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                                    appStage.setScene(patientLoginScene);
-                                    appStage.show();
-                                } catch (IOException ioException) {
-                                    System.out.println("Unable to load FXML file");
-                                }
-                            }
-                    );
-                    delay.play();
+                    Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
+                    Scene patientLoginScene = new Scene(patientLoginRoot);
+                    Stage appStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    appStage.setScene(patientLoginScene);
+                    appStage.show();
 
                 } else {
                     errorMessageLabel.setText("Password is not matched");
