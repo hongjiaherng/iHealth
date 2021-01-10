@@ -7,9 +7,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.*;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
-import models.Appointment;
-import models.OperatingDetails;
-import models.Patient;
+import models.*;
 import org.bson.Document;
 import utils.DBConnection;
 
@@ -158,4 +156,26 @@ public class PatientDao {
         }
         return datesWithinAWeek;
     }
+
+    public static Patient findIcOrName(String nameOrIc) {
+
+        MongoCollection<Patient> patientMongoCollection = ihealthDB.getCollection("patients", Patient.class);
+        Patient currentIcOrName = patientMongoCollection.find(or(eq("icNo", nameOrIc),eq("name",nameOrIc))).first();
+
+        return currentIcOrName;
+    }
+
+    public static Iterator<Patient> findAll() {
+
+        FindIterable<Patient> allPatients = patientsCollection.find();
+
+        Iterator<Patient> iterator = allPatients.iterator();
+        return iterator;
+
+    }
+
+//    public static void editAppointmentList(AppointmentList previousVer, AppointmentList newVer) {
+//        String date = previousVer.getDate();
+//        Patient previousAppointmentList = patientsCollection.findOneAndReplace(eq("date", date),newVer);
+//    }
 }
