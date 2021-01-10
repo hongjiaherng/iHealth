@@ -1,6 +1,5 @@
 package controllers;
 
-import com.mongodb.client.FindIterable;
 import dao.PatientDao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,16 +15,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Appointment;
 import models.AppointmentList;
-import models.OperatingDetails;
 import models.Patient;
-import utils.Logger;
-import utils.SessionManager;
-
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.*;
 
 public class AppointmentListController implements Initializable{

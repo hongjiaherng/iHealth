@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="argon2-jvm-2.7">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../argon2-jvm-2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../jna-5.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

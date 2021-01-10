@@ -14,7 +14,6 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import main.Main;
 import models.Appointment;
 import models.Patient;
 import utils.SessionManager;

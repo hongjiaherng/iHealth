@@ -174,8 +174,23 @@ public class PatientDao {
 
     }
 
-//    public static void editAppointmentList(AppointmentList previousVer, AppointmentList newVer) {
-//        String date = previousVer.getDate();
-//        Patient previousAppointmentList = patientsCollection.findOneAndReplace(eq("date", date),newVer);
-//    }
+    public static void editAppointmentList(AppointmentList previousVer, AppointmentList newVer) {
+        Patient previousRecord = patientsCollection.find(eq("icNo",previousVer.getIc())).first();
+        List<String> date = previousRecord.getConfirmDate();
+        List<String> time = previousRecord.getBookedTime();
+        List<String> reason = previousRecord.getReason();
+        List<String> remarks = previousRecord.getRemarks();
+        int index = 0;
+        for (int i = 0; i < date.size(); i++) {
+            if(time.get(i).equals(previousVer.getTime()) && date.get(i).equals(previousVer.getDate())){
+                index = i;
+                break;
+            }
+        }
+        remarks.add(index, newVer.getRemark());
+        remarks.remove(index+1);
+        previousRecord.setRemarks(remarks);
+        String ic = previousVer.getIc();
+        Patient previousAppointmentList = patientsCollection.findOneAndReplace(and(eq("confirmDate", date),eq("icNo",ic)),previousRecord);
+    }
 }

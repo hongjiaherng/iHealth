@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import models.AppointmentList;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -55,7 +56,7 @@ public class EditAppointmentListController implements Initializable {
 
         AppointmentList appointmentList = new AppointmentList();
         appointmentList.setRemark(remark);
-//        PatientDao.editAppointmentList(item, appointmentList);
+        PatientDao.editAppointmentList(item, appointmentList);
 
         messageLabel.setText("Appointment List is changed successfully!");
 
