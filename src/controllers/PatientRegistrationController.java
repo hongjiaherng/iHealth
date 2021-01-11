@@ -35,6 +35,7 @@ public class PatientRegistrationController {
     @FXML
     private Label errorMessageLabel;
 
+    // Method to create a new patient account if the confirm button is clicked
     @FXML
     private void confirmButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (!(nameTextField.getText().isEmpty() || icNoTextField.getText().isEmpty() ||
@@ -95,6 +96,7 @@ public class PatientRegistrationController {
         }
     }
 
+    // Method that switch to patient login page if the back button is clicked
     @FXML
     private void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent patientLoginRoot = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));

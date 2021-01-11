@@ -31,27 +31,29 @@ public class PatientMainPageController implements Initializable {
     @FXML
     private Label welcomeLabel;
 
+    // Method to display message "Welcome + nameOfPatient"
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         welcomeLabel.setText("Welcome, " + SessionManager.getSessionUser().getName() + "!");
 
         notificationGroup.setVisible(false);
-        // check if any appointment within a week
-        // if yes, show the rectangle
+        // Check if any appointment within a week
+        // If yes, show the rectangle
         List<LocalDate> datesWithinAWeek = PatientDao.findDatesWithinAWeek(SessionManager.getSessionUser().getUsername(), LocalDate.now());
         if (datesWithinAWeek.size() != 0) {
             notificationGroup.setVisible(true);
 
-            // if only one appointment within a week, show the date as the hyperlink
+            // If only one appointment within a week, show the date as the hyperlink
             if (datesWithinAWeek.size() == 1) {
                 dateHyperlink.setText(datesWithinAWeek.get(0).toString());
             } else {
-                // else show the number of appointment as the hyperlink
+                // Else show the number of appointment as the hyperlink
                 dateHyperlink.setText(datesWithinAWeek.size() + " appointments");
             }
         }
     }
 
+    // Method that switch to patient check appointment page when the hyperlink is clicked
     @FXML
     private void dateHyperlinkOnAction(ActionEvent actionEvent) throws IOException {
         Parent checkDetailsRoot = FXMLLoader.load(getClass().getResource("../views/patientCheckAppointmentView.fxml"));
@@ -61,6 +63,7 @@ public class PatientMainPageController implements Initializable {
         appStage.show();
     }
 
+    // Method that switch to patient login page when log out is clicked
     @FXML
     private void logoutOnAction(ActionEvent actionEvent) throws IOException {
         CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
@@ -71,6 +74,7 @@ public class PatientMainPageController implements Initializable {
         appStage.show();
     }
 
+    // Method that switch to patient make appointment page when make reservation button is clicked
     @FXML
     private void makeReservationOnAction(MouseEvent actionEvent) throws IOException {
         Parent makeAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMakeAppointmentView.fxml"));
@@ -80,6 +84,7 @@ public class PatientMainPageController implements Initializable {
         appStage.show();
     }
 
+    // Method that switch to patient check appointment page when check appointment details button is clicked
     @FXML
     private void checkDetailsOnAction(MouseEvent actionEvent) throws IOException {
         Parent checkDetailsRoot = FXMLLoader.load(getClass().getResource("../views/patientCheckAppointmentView.fxml"));

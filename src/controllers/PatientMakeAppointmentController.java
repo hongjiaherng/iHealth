@@ -37,13 +37,16 @@ public class PatientMakeAppointmentController implements Initializable {
     @FXML
     private TextField visitReasonTextField;
 
+    // Declare an instance variable called date with String type
     private String date;
 
+    // Method to call timeChoiceBox.getItems().add("") to initialize in the timeChoiceBox
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         timeChoiceBox.getItems().add("");
     }
 
+    // Method to pick the date in the calendar
     @FXML
     private void pickDateOnAction(ActionEvent actionEvent) {
 
@@ -83,16 +86,18 @@ public class PatientMakeAppointmentController implements Initializable {
                 timeChoiceBox.getItems().add(timeSelection.toString());
             }
         } else {
+            // Display error message if past date is chosen
             bookFailLabel.setText("You can't choose the past date");
             visitReasonTextField.setDisable(true);
         }
     }
 
+    // Method that switch to book success page when book now button is clicked
     @FXML
     private void bookNowOnAction(ActionEvent actionEvent) throws IOException {
 
         String username = SessionManager.getSessionUser().getUsername();
-
+        // Display error message if the date id not selected or the reason is not filled or the time is not chosen
         if (date == null || visitReasonTextField.getText().isEmpty() || timeChoiceBox.getValue() == null) {
             bookFailLabel.setText("Please fill up all the fields");
 //        } else if (date.compareTo(Instant.now().toString()) <= 0) {
@@ -119,12 +124,13 @@ public class PatientMakeAppointmentController implements Initializable {
                 }
 
             } else {
+                // Display error message if the time slot has been chosen by other patient
                 bookFailLabel.setText("Time slot had been booked by others");
             }
         }
     }
 
-
+    // Method to cancel the make appointment
     @FXML
     private void cancelOnAction(ActionEvent actionEvent) {
         visitReasonTextField.setText("");
@@ -133,6 +139,7 @@ public class PatientMakeAppointmentController implements Initializable {
         diffOperatingHoursLabel.setText("");
     }
 
+    // Method that switch to patient main page if the back button is clicked
     @FXML
     private void backOnAction(ActionEvent actionEvent) throws IOException {
         Parent patientMainPageRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));

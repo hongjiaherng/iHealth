@@ -32,8 +32,10 @@ public class PatientCheckAppointmentController implements Initializable {
 
     @FXML
     private RadioButton listAppointmentRadioButton;
+
     @FXML
     private MenuItem cancelMenuItem;
+
     @FXML
     private TableView<Appointment> table;
 
@@ -52,10 +54,13 @@ public class PatientCheckAppointmentController implements Initializable {
     @FXML
     private TableColumn<Appointment, String> remarksCol;
 
+    // A list that track changes in table view when it occur
     ObservableList<Appointment> obList = FXCollections.observableArrayList();
 
+    // Method to initialize the current patient appointment details in table view
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // Find the username entered in class PatientDao
         String username = SessionManager.getSessionUser().getUsername();
         Patient currentPatient = PatientDao.findAppointments(username);
 
@@ -64,6 +69,7 @@ public class PatientCheckAppointmentController implements Initializable {
         }
     }
 
+    // Method that switch to patient main page if the back button is clicked
     @FXML
     private void backButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent checkAppointmentRoot = FXMLLoader.load(getClass().getResource("../views/patientMainPageView.fxml"));
@@ -73,6 +79,7 @@ public class PatientCheckAppointmentController implements Initializable {
         appStage.show();
     }
 
+    // Method use mouse right click to select delete for the appointment list
     @FXML
     private void rightClickToDelete(MouseEvent mouseEvent) {
         if (!obList.isEmpty()) {
@@ -86,11 +93,13 @@ public class PatientCheckAppointmentController implements Initializable {
         }
     }
 
+    // Method to delete the selected appointment list
     @FXML
     private void deleteAppointmentOnAction(ActionEvent actionEvent) {
         if (table.getSelectionModel().getSelectedItem() != null) {
             deleteConfirmation();
         } else {
+            // Display error message if there is no selected appointment to delete
             Alert errorAlert = new Alert(Alert.AlertType.WARNING);
             errorAlert.setContentText("Please select an appointment");
             errorAlert.show();
@@ -98,6 +107,7 @@ public class PatientCheckAppointmentController implements Initializable {
         table.getSelectionModel().clearSelection();
     }
 
+    // Method to display the message "Confirm to cancel appointment?"
     private void deleteConfirmation() {
         Appointment item = table.getSelectionModel().getSelectedItem();
 
@@ -106,7 +116,7 @@ public class PatientCheckAppointmentController implements Initializable {
         alert.setTitle("Cancel Appointment");
         alert.setHeaderText("Confirm to cancel appointment?");
         alert.setContentText(String.format("Appointment details\n\n%10s : %s\n%10s : %s\n%8s : %s", "Date", item.getConfirmDate(), "Time", item.getBookedTime(), "Reason", item.getReason()));
-
+        // If press ok, then the selected appointment details will be deleted
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
             if (result.get() == ButtonType.OK) {
@@ -116,8 +126,9 @@ public class PatientCheckAppointmentController implements Initializable {
         }
     }
 
+    // Method to display all the appointment details in the next 7 days in table view
     public void listAppointmentInAWeek(ActionEvent actionEvent) {
-
+        // Find the username of the current patient
         String username = SessionManager.getSessionUser().getUsername();
         Patient currentPatient = PatientDao.findAppointments(username);
 
@@ -155,6 +166,7 @@ public class PatientCheckAppointmentController implements Initializable {
         }
     }
 
+    // Method to display all the appointment details of the patient in table view
     private void loadAppointments(Patient currentPatient) {
         table.getItems().clear();
         for (int i = 0; i < currentPatient.getReason().size(); i++) {

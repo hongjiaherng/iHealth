@@ -27,7 +27,7 @@ public class AdminLoginController {
     @FXML
     private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (adminIdTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-            loginErrorLabel.setText("Admin ID and Password cannot be empty!");
+            loginErrorLabel.setText("Admin ID or Password cannot be empty!");
         } else if (!validateLogin()) {
             loginErrorLabel.setText("Invalid Admin ID or Password");
         } else {
@@ -63,14 +63,5 @@ public class AdminLoginController {
 
         return true;
     }
-
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        List<String> adminInfo=new ArrayList<>();
-//        adminInfo.add("admin0");
-//        adminInfo.add("admin0");
-//        adminInfo.add("Admin");
-//        AdminDao.createAdmin(adminInfo);
-//    }
 }
 

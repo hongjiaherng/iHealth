@@ -50,15 +50,19 @@ public class AppointmentListController implements Initializable{
     @FXML
     private Label saveLabel;
 
+    // A list that track changes in table view when it occur
     ObservableList<AppointmentList> list = FXCollections.observableArrayList();
 
+    // Declare an AppointmentList object called selectedItem
     public static AppointmentList selectedItem;
 
+    // Method to call the initRecord() method to initialize in the table view
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initRecord();
     }
 
+    // Method to search whether the IC or name entered is empty or valid
     @FXML
     private void search(ActionEvent actionEvent) throws IOException {
         String nameOrIc = icRow.getText();
@@ -72,6 +76,7 @@ public class AppointmentListController implements Initializable{
         }
     }
 
+    // Method to validate the IC or name entered by the admin
     private boolean validateIcOrName(String nameOrIc) {
         Patient patient = PatientDao.findIcOrName(nameOrIc);
         if(patient == null){
@@ -80,6 +85,7 @@ public class AppointmentListController implements Initializable{
         return true;
     }
 
+    // Method that switch to admin main page if the back button is clicked
     @FXML
     private void backToAdminPage(ActionEvent actionEvent) throws IOException {
         Parent appointmentListRoot = FXMLLoader.load(getClass().getResource("../views/adminMainPageView.fxml"));
@@ -89,6 +95,7 @@ public class AppointmentListController implements Initializable{
         appStage.show();
     }
 
+    // Method that switch to edit appointment page if the edit button is clicked
     @FXML
     private void editButton(ActionEvent actionEvent) throws IOException {
         // Check if any record is selected, if yes popup edit view, if no popup error view
@@ -115,11 +122,13 @@ public class AppointmentListController implements Initializable{
         table.getSelectionModel().clearSelection();
     }
 
+    // Method to reset the table view to all patient appointment details
     @FXML
     private void reset(ActionEvent actionEvent) throws IOException{
         initRecord();
     }
 
+    // Method to search the appointment when IC or name is entered
     private void searchAppointment() {
         table.getItems().clear();
         String icOrName = icRow.getText();
@@ -136,6 +145,7 @@ public class AppointmentListController implements Initializable{
                 AppointmentList appointmentList = new AppointmentList(date, time, patient.getName(), patient.getIcNo(), reason, remark);
                 appointmentLists.add(appointmentList);
             }
+            // Sort the date in ascending order
             Collections.sort(appointmentLists);
             for (AppointmentList item : appointmentLists) {
                 list.add(item);
@@ -153,6 +163,7 @@ public class AppointmentListController implements Initializable{
         }
     }
 
+    // Method to display all the patient appointment details in table view
     private void initRecord(){
         table.getItems().clear();
         Iterator<Patient> allPatients = PatientDao.findAll();
@@ -172,6 +183,7 @@ public class AppointmentListController implements Initializable{
                         AppointmentList appointmentList = new AppointmentList(date, time, patient.getName(), patient.getIcNo(), reason, remark);
                         appointmentLists.add(appointmentList);
                     }
+                    // Sort the date in ascending order
                     Collections.sort(appointmentLists);
                     for (AppointmentList item : appointmentLists) {
                         list.add(item);
