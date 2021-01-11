@@ -11,13 +11,17 @@ import javafx.stage.StageStyle;
 import utils.DBConnection;
 import utils.SessionManager;
 
+// Entry point of the application (main method)
+
 public class Main extends Application {
 
+    // Execute init() to start the DBConnection to MongoDB before calling start()
     @Override
     public void init() {
         DBConnection.startConnection();
     }
 
+    // Start the application
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../views/patientLoginView.fxml"));
@@ -29,13 +33,15 @@ public class Main extends Application {
         primaryStage.show();
     }
 
+    // Execute stop() whenever program is closed to disconnect with MongoDB
     @Override
     public void stop() {
         if (SessionManager.getSessionUser() != null) {
+            // Delete the document of current user in MongoDB's currentOnlineUser collection to show offline status
             CurrentOnlineUserDao.destroyOnlineSession(SessionManager.getSessionUser().getUsername());
         }
         DBConnection.stopConnection();
-        SessionManager.destroySession();
+        SessionManager.destroySession();    // Destroy the Patient object
     }
 
     public static void main(String[] args) {

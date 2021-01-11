@@ -2,15 +2,19 @@ package models;
 
 import java.util.Objects;
 
-// POJO class
+// POJO class (Plain Old Java Object) of operatingDetails (a collection in ihealth_db database)
+// - to automatically map MongoDB documents (in operatingDetails collection) to Plain Old Java Objects (POJOs)
+// - to set the operating hours of clinic, use date as the unique credential
 
 public class OperatingDetails {
 
+    // Class fields
     private String date;
     private String openingTime;
     private String closingTime;
     private String remark;
 
+    // Getters and setters
     public String getDate() {
         return date;
     }
@@ -47,6 +51,7 @@ public class OperatingDetails {
         return this;
     }
 
+    // toString
     @Override
     public String toString() {
         return "OperatingDetails{" +
@@ -57,6 +62,7 @@ public class OperatingDetails {
                 '}';
     }
 
+    // equals method to compare the equality of OperatingDetails objects
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +74,7 @@ public class OperatingDetails {
                 Objects.equals(remark, that.remark);
     }
 
+    // hashcode
     @Override
     public int hashCode() {
         return Objects.hash(date, openingTime, closingTime, remark);

@@ -2,16 +2,20 @@ package models;
 
 import java.util.Objects;
 
-// Not a POJO class
+// Normal Appointment object class
+// - to contain the details of a appointment
+// - not a POJO class which maps with MongoDB collection
 
 public class Appointment {
 
+    // Class fields
     private String username;
     private String reason;
     private String confirmDate;
     private String bookedTime;
     private String remarks;
 
+    // Constructor method
     public Appointment(String username, String reason, String confirmDate, String bookedTime, String remarks) {
         this.username = username;
         this.reason = reason;
@@ -20,6 +24,7 @@ public class Appointment {
         this.remarks = remarks;
     }
 
+    // Setters and Getters
     public String getUsername() {
         return username;
     }
@@ -60,6 +65,7 @@ public class Appointment {
         this.remarks = remarks;
     }
 
+    // toString
     @Override
     public String toString() {
         return "Appointment{" +
@@ -71,6 +77,7 @@ public class Appointment {
                 '}';
     }
 
+    // equals method for comparing equality of Appointment object
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -83,6 +90,7 @@ public class Appointment {
                 Objects.equals(remarks, that.remarks);
     }
 
+    // hashcode
     @Override
     public int hashCode() {
         return Objects.hash(username, reason, confirmDate, bookedTime, remarks);

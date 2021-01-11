@@ -18,11 +18,17 @@ import java.util.List;
 
 import static com.mongodb.client.model.Filters.*;
 
+// Data access object class of models.Patient to perform CRUD operation in patients collection inside ihealth_db
+
 public class PatientDao {
 
+    // Obtain the MongoDatabase object of database
     private static final MongoDatabase ihealthDB = DBConnection.getConnection();
+
+    // Obtain patients collection
     private static final MongoCollection<Patient> patientsCollection = ihealthDB.getCollection("patients", Patient.class);
 
+    // Method to validate if the username and password of a login user is correct in patient login page
     public static Patient findPatient(String username, String password) {
 
         Patient patient = patientsCollection.find((eq("username", username))).first();
@@ -31,6 +37,8 @@ public class PatientDao {
             // Username incorrect
             return null;
         } else if (Argon2Factory.create().verify(patient.getPassword(), password.toCharArray())) {
+            // Hash the passed in password and check if it is the same as the recorded hashed password in database
+            // Password correct
             System.out.println("Patient found:\t" + patient);
             return patient;
         } else {
@@ -39,6 +47,7 @@ public class PatientDao {
         }
     }
 
+    // Method to check if a patient account is already exist with his/her unique identifiers, ic number & username
     public static boolean isExist(String icNo, String username) {
 
         Patient patient = patientsCollection.find(or(eq("icNo", icNo), eq("username", username))).first();
@@ -46,6 +55,7 @@ public class PatientDao {
         return patient != null;
     }
 
+    // Method to create a Patient document in database when patient is creating a new account
     public static void createPatient(List<String> patientInfo, List<ArrayList<String>> patientBook) {
         // Create instance
         Argon2 argon2 = Argon2Factory.create();
@@ -57,7 +67,7 @@ public class PatientDao {
             // Hash password
             String hash = argon2.hash(10, 65536, 1, password);
 
-            // create a new patient
+            // create a new patient where the password is being hashed
             Patient newPatient = new Patient().setName(patientInfo.get(0))
                     .setIcNo(patientInfo.get(1))
                     .setEmail(patientInfo.get(2))
@@ -78,11 +88,13 @@ public class PatientDao {
         }
     }
 
+    // Method to check if a selected timeslot is available for making new appointment
     public static boolean isAvailable(String date, String time) {
         Patient newPatient = patientsCollection.find(and(eq("confirmDate", date), eq("bookedTime", time))).first();
         return newPatient == null;
     }
 
+    // Method to book the appointment by insert new appointment records into the existing patient document on database
     public static Patient bookAppointment(Appointment appointment) {
         Patient newPatient = patientsCollection.find(eq("username", appointment.getUsername())).first();
 
@@ -101,11 +113,13 @@ public class PatientDao {
         }
     }
 
+    // Method to find the existing appointments of a patient by using username and return it in the form of Patient
     public static Patient findAppointments(String username) {
         Patient currentPatient = patientsCollection.find(eq("username", username)).first();
         return currentPatient;
     }
 
+    // Method to delete selected appointment from database
     public static Patient removeSelectedAppointment(Appointment appointment) {
 
         String username = appointment.getUsername();
@@ -131,11 +145,13 @@ public class PatientDao {
         return existingPatient;
     }
 
+    // Method to determine if a date has already contained any appointments from the patients
     public static boolean dateIsBooked(OperatingDetails operatingDetails) {
         Patient existingPatient = patientsCollection.find(eq("confirmDate", operatingDetails.getDate())).first();
         return existingPatient != null;
     }
 
+    // Method to find the appointment dates which are within a week from current time of a patient
     public static List<LocalDate> findDatesWithinAWeek(String username, LocalDate currentDate) {
 
         Patient existingPatient = patientsCollection.find(eq("username", username)).first();
@@ -157,28 +173,27 @@ public class PatientDao {
         return datesWithinAWeek;
     }
 
+    // Method to get the patient instance by using name or ic
     public static Patient findIcOrName(String nameOrIc) {
 
-        MongoCollection<Patient> patientMongoCollection = ihealthDB.getCollection("patients", Patient.class);
-        Patient currentIcOrName = patientMongoCollection.find(or(eq("icNo", nameOrIc),eq("name",nameOrIc))).first();
-
+        Patient currentIcOrName = patientsCollection.find(or(eq("icNo", nameOrIc),eq("name",nameOrIc))).first();
         return currentIcOrName;
     }
 
+    // Method to return all the documents in patients collection in the form of Iterator
     public static Iterator<Patient> findAll() {
 
         FindIterable<Patient> allPatients = patientsCollection.find();
-
         Iterator<Patient> iterator = allPatients.iterator();
         return iterator;
-
     }
 
+    // Method to edit the appointment details of a patient from the previous version to new version
     public static void editAppointmentList(AppointmentList previousVer, AppointmentList newVer) {
         Patient previousRecord = patientsCollection.find(eq("icNo",previousVer.getIc())).first();
+        assert previousRecord != null;
         List<String> date = previousRecord.getConfirmDate();
         List<String> time = previousRecord.getBookedTime();
-        List<String> reason = previousRecord.getReason();
         List<String> remarks = previousRecord.getRemarks();
         int index = 0;
         for (int i = 0; i < date.size(); i++) {
