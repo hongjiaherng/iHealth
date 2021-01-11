@@ -2,14 +2,17 @@ package models;
 
 import org.bson.types.ObjectId;
 
-// POJO class
+// POJO class (Plain Old Java Object) of currentOnlineUsers (a collection in ihealth_db database)
+// - to automatically map MongoDB documents (in currentOnlineUsers collection) to Plain Old Java Objects (POJOs)
 
 public class CurrentOnlineUser {
 
+    // Class fields
     private ObjectId id;
     private String username;
     private String loginTime;
 
+    // Getters and setters
     public ObjectId getId() {
         return id;
     }

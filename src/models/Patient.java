@@ -5,10 +5,12 @@ import org.bson.types.ObjectId;
 import java.util.List;
 import java.util.Objects;
 
-// POJO class
+// POJO class (Plain Old Java Object) of patients (a collection in ihealth_db database)
+// - to automatically map MongoDB documents (in patients collection) to Plain Old Java Objects (POJOs)
 
 public class Patient {
 
+    // Class fields
     private ObjectId id;
     private String username;
     private String password;
@@ -21,7 +23,7 @@ public class Patient {
     private List<String> bookedTime;
     private List<String> remarks;
 
-    // Getter and setter
+    // Getters and setters
     public Patient setId(ObjectId id) {
         this.id = id;
         return this;
@@ -121,6 +123,7 @@ public class Patient {
         return remarks;
     }
 
+    // toString
     @Override
     public String toString() {
         return "Patient{" +
@@ -138,6 +141,7 @@ public class Patient {
                 '}';
     }
 
+    // equals method to compare the equality of Patient objects
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -156,6 +160,7 @@ public class Patient {
                 Objects.equals(remarks, patient.remarks);
     }
 
+    // hashcode
     @Override
     public int hashCode() {
         return Objects.hash(id, username, password, name, icNo, email, phoneNum, reason, confirmDate, bookedTime, remarks);

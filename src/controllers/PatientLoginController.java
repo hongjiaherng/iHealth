@@ -32,7 +32,7 @@ public class PatientLoginController {
     @FXML
     private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
         if (usernameTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
-            loginErrorLabel.setText("Username and Password cannot be empty!");
+            loginErrorLabel.setText("Username or Password cannot be empty!");
         } else if (validateLogin()) {
             loginErrorLabel.setText("");
             // Switch to patient dashboard here

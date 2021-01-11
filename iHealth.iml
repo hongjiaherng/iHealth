@@ -11,6 +11,5 @@
     <orderEntry type="library" name="mongodb-driver-sync-3.11.0" level="project" />
     <orderEntry type="library" name="jna-5.5.0" level="project" />
     <orderEntry type="library" name="argon2-jvm-2.7" level="project" />
-    <orderEntry type="library" name="bson-3.11.0" level="project" />
   </component>
 </module>

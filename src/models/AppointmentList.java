@@ -2,7 +2,13 @@ package models;
 
 import java.util.Objects;
 
-public class AppointmentList implements Comparable{
+// Normal AppointmentList object class
+// - contains the details of a appointment which is mainly used by AppointmentListController class
+// - not a POJO class which maps with MongoDB collection
+
+public class AppointmentList implements Comparable {
+
+    // Class fields
     private String date;
     private String time;
     private String name;
@@ -10,9 +16,11 @@ public class AppointmentList implements Comparable{
     private String reason;
     private String remark;
 
+    // Empty constructor
     public AppointmentList() {
     }
 
+    // Constructor method to initialize the fields of the object
     public AppointmentList(String date, String time, String name, String ic, String reason, String remark) {
         this.date = date;
         this.time = time;
@@ -22,6 +30,7 @@ public class AppointmentList implements Comparable{
         this.remark = remark;
     }
 
+    // Setters and getters
     public void setDate(String date) {
         this.date = date;
     }
@@ -70,6 +79,7 @@ public class AppointmentList implements Comparable{
         return remark;
     }
 
+    // toString
     @Override
     public String toString() {
         return "AppointmentList{" +
@@ -82,6 +92,7 @@ public class AppointmentList implements Comparable{
                 '}';
     }
 
+    // equals method to compare the equality of AppointmentList object
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,11 +106,13 @@ public class AppointmentList implements Comparable{
                 Objects.equals(remark, that.remark);
     }
 
+    // hashcode
     @Override
     public int hashCode() {
         return Objects.hash(date, time, name, ic, reason, remark);
     }
 
+    // compareTo method to compare the AppointmentList object using the field, date
     @Override
     public int compareTo(Object o) {
         return this.date.compareTo(((AppointmentList) o).getDate());

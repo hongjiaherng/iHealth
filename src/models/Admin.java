@@ -4,10 +4,12 @@ import org.bson.types.ObjectId;
 
 import java.util.Objects;
 
-// POJO class
+// POJO class (Plain Old Java Object) of admins (a collection in ihealth_db database)
+// - to automatically map MongoDB documents (in admins collection) to Plain Old Java Objects (POJOs)
 
 public class Admin {
 
+    // Class fields
     private ObjectId id;
     private String adminId;
     private String password;
@@ -50,6 +52,7 @@ public class Admin {
         return name;
     }
 
+    // toString
     @Override
     public String toString() {
         return "Admin{" +
@@ -60,6 +63,7 @@ public class Admin {
                 '}';
     }
 
+    // equals method for comparing equality of Admin object
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -71,6 +75,7 @@ public class Admin {
                 Objects.equals(name, admin.name);
     }
 
+    // hashcode
     @Override
     public int hashCode() {
         return Objects.hash(id, adminId, password, name);

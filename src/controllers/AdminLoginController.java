@@ -63,14 +63,5 @@ public class AdminLoginController {
 
         return true;
     }
-
-//    @Override
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        List<String> adminInfo=new ArrayList<>();
-//        adminInfo.add("admin0");
-//        adminInfo.add("admin0");
-//        adminInfo.add("Admin");
-//        AdminDao.createAdmin(adminInfo);
-//    }
 }
 
