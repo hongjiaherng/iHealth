@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class AdminMainPageController {
 
+    // Method that switch to admin login page if the log out button is clicked
     @FXML
     private void logOutButtonOnAction(ActionEvent actionEvent) throws IOException {
         Parent adminLoginRoot = FXMLLoader.load(getClass().getResource("../views/adminLoginView.fxml"));
@@ -22,6 +23,7 @@ public class AdminMainPageController {
         appStage.show();
     }
 
+    // Method that switch to appointment list page if the edit appointment list button is clicked
     @FXML
     private void editAppointmentListButtonOnAction(MouseEvent mouseEvent) throws IOException{
         Parent appointmentListRoot = FXMLLoader.load(getClass().getResource("../views/appointmentListView.fxml"));
@@ -31,6 +33,7 @@ public class AdminMainPageController {
         appStage.show();
     }
 
+    // Method that switch to clinic details page if the edit operating hours button is clicked
     @FXML
     private void editOperatingHoursButtonOnAction(MouseEvent mouseEvent) throws IOException{
         Parent clinicDetailsRoot = FXMLLoader.load(getClass().getResource("../views/clinicDetailsView.fxml"));

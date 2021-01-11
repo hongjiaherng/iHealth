@@ -24,8 +24,10 @@ public class AdminLoginController {
     @FXML
     private PasswordField passwordField;
 
+    // Method that switch to admin main page if login button is clicked
     @FXML
     private void loginButtonOnAction(ActionEvent actionEvent) throws IOException {
+        // Check whether the admin id or password is empty and the validity of the admin id or password
         if (adminIdTextField.getText().isEmpty() || passwordField.getText().isEmpty()) {
             loginErrorLabel.setText("Admin ID or Password cannot be empty!");
         } else if (!validateLogin()) {
@@ -41,6 +43,7 @@ public class AdminLoginController {
         }
     }
 
+    // Method that switch to patient login page if the back button is clicked
     @FXML
     private void backToPatientLoginButtonOnAction(ActionEvent actionEvent) throws IOException {
         // Switch to User Login page here
@@ -51,6 +54,7 @@ public class AdminLoginController {
         appStage.show();
     }
 
+    // Method to validate the admin id and password
     private boolean validateLogin() {
         String adminId = adminIdTextField.getText();
         String password = passwordField.getText();
