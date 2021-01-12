@@ -24,6 +24,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+// A controller class for an extra window that can add different operating details
+
 public class AddDiffOperatingHoursController implements Initializable {
 
     @FXML
@@ -41,11 +43,14 @@ public class AddDiffOperatingHoursController implements Initializable {
     @FXML
     private TextField remarkTextField;
 
+    // Initialize the items in the opening and closing time choice box
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initChoiceBoxItems();
     }
 
+    // Helps to disable other controls when a past date has been selected
     @FXML
     private void pickDateOnAction(ActionEvent actionEvent) {
         if (datePicker.getValue().compareTo(LocalDate.now()) > 0) {
@@ -61,6 +66,7 @@ public class AddDiffOperatingHoursController implements Initializable {
         }
     }
 
+    // Save the current changes to MongoDB
     @FXML
     private void saveChangesOnAction(ActionEvent actionEvent) {
         if (datePicker.getValue() == null || openingTimeChoiceBox.getValue() == null || closingTimeChoiceBox.getValue() == null || remarkTextField.getText().isEmpty()) {
@@ -104,12 +110,14 @@ public class AddDiffOperatingHoursController implements Initializable {
         }
     }
 
+    // Close the window and back to clinicDetailsView
     @FXML
     private void cancelOnAction(ActionEvent actionEvent) {
         Stage addDiffOperatingHoursWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         addDiffOperatingHoursWindow.close();
     }
 
+    // Reset the items in opening time choice box
     @FXML
     private void openingTimeChoiceBoxReset(MouseEvent mouseEvent) {
         if (closingTimeChoiceBox.getValue() != null) {
@@ -135,6 +143,7 @@ public class AddDiffOperatingHoursController implements Initializable {
         }
     }
 
+    // Reset the items in closing time choice box
     @FXML
     private void closingTimeChoiceBoxReset(MouseEvent mouseEvent) {
         if (openingTimeChoiceBox.getValue() != null) {
@@ -153,6 +162,7 @@ public class AddDiffOperatingHoursController implements Initializable {
         }
     }
 
+    // Helper method to initialize the choice box items
     private void initChoiceBoxItems() {
         String operatingTime = "0800"; // 0800 - 2300
         for (int temp = Integer.parseInt(operatingTime); temp <= 2400; temp += 100) {
@@ -177,6 +187,7 @@ public class AddDiffOperatingHoursController implements Initializable {
         }
     }
 
+    // Helper method to clear all the filled up fields
     private void clearFields() {
         datePicker.getEditor().clear();
         openingTimeChoiceBox.getItems().clear();

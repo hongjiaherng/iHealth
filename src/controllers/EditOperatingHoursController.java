@@ -19,8 +19,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class EditOperatingHoursController implements Initializable {
+// A controller class for an extra window that can edit existing different operating details
 
+public class EditOperatingHoursController implements Initializable {
 
     @FXML
     private RadioButton setCustomButton;
@@ -39,6 +40,7 @@ public class EditOperatingHoursController implements Initializable {
 
     private OperatingDetails item;
 
+    // Initialize the view
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ToggleGroup buttonGroup = new ToggleGroup();
@@ -53,6 +55,7 @@ public class EditOperatingHoursController implements Initializable {
         initChoiceBox();
     }
 
+    // Enable the controls for admin to fill up when setCustomButton is clicked
     @FXML
     private void setCustomOperatingHours(ActionEvent actionEvent) {
         if (setCustomButton.isSelected()) {
@@ -63,6 +66,7 @@ public class EditOperatingHoursController implements Initializable {
         }
     }
 
+    // Disable the controls for admin to fill up when setDefaultButton is clicked
     @FXML
     private void resetDefaultOperatingHours(ActionEvent actionEvent) {
         if (setDefaultButton.isSelected()) {
@@ -74,6 +78,7 @@ public class EditOperatingHoursController implements Initializable {
         }
     }
 
+    // Reset the items in closing time choice box
     @FXML
     private void closingTimeChoiceBoxReset(MouseEvent mouseEvent) {
         if (openingTimeChoiceBox.getValue() != null) {
@@ -92,6 +97,7 @@ public class EditOperatingHoursController implements Initializable {
         }
     }
 
+    // Reset the items in opening time choice box
     @FXML
     private void openingTimeChoiceBoxReset(MouseEvent mouseEvent) {
         if (closingTimeChoiceBox.getValue() != null) {
@@ -117,6 +123,7 @@ public class EditOperatingHoursController implements Initializable {
         }
     }
 
+    // Save the changes to database
     @FXML
     private void saveChangesOnAction(ActionEvent actionEvent) {
         if (setCustomButton.isSelected()) {
@@ -163,12 +170,14 @@ public class EditOperatingHoursController implements Initializable {
         delay.play();
     }
 
+    // Close the curernt window and back to clinicDetailsView
     @FXML
     private void cancelOnAction(ActionEvent actionEvent) {
         Stage editOperatingHoursWindow = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         editOperatingHoursWindow.close();
     }
 
+    // Helper method to initialize the choice box
     private void initChoiceBox() {
 
         String operatingTime = "0800"; // 0800 - 2300
@@ -194,6 +203,7 @@ public class EditOperatingHoursController implements Initializable {
         }
     }
 
+    // Helper method to clear the fields
     private void clearFields() {
         openingTimeChoiceBox.getItems().clear();
         closingTimeChoiceBox.getItems().clear();

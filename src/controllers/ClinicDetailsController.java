@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
-// clear filter after both add and edit
+// Controller class for clinicDetailsControllerView
 
 public class ClinicDetailsController implements Initializable {
 
@@ -56,6 +56,7 @@ public class ClinicDetailsController implements Initializable {
 
     public static OperatingDetails selectedItem;
 
+    // Initialize the items in year and month choice box
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initRecords();
@@ -72,6 +73,7 @@ public class ClinicDetailsController implements Initializable {
         monthChoiceBox.setDisable(true);
     }
 
+    // back to admin main page
     @FXML
     private void backAdminMainPage(ActionEvent actionEvent) throws IOException {
         Parent adminMainPageRoot = FXMLLoader.load(getClass().getResource("../views/adminMainPageView.fxml"));
@@ -81,6 +83,7 @@ public class ClinicDetailsController implements Initializable {
         appStage.show();
     }
 
+    // Add a new Window to add different operating hours to a date
     @FXML
     private void addDiffOperatingHours(ActionEvent actionEvent) throws IOException {
         Stage addDiffOperatingHoursWindow = new Stage();
@@ -98,6 +101,7 @@ public class ClinicDetailsController implements Initializable {
         initRecords();
     }
 
+    // Add a new Window to edit existing different operating hours
     @FXML
     private void editOperatingHours(ActionEvent actionEvent) throws IOException {
         // Check if any record is selected, if yes popup edit view, if no popup error view
@@ -127,6 +131,8 @@ public class ClinicDetailsController implements Initializable {
         table.getSelectionModel().clearSelection();
     }
 
+    // Change the items of the choice box when either of the year or month choice box are selected
+    // It will filter the result once the items have been selected
     @FXML
     private void choiceBoxClicked(ActionEvent actionEvent) {
         if (yearChoiceBox.getValue() != null) {
@@ -179,6 +185,7 @@ public class ClinicDetailsController implements Initializable {
         }
     }
 
+    // Clear the year and month checkbox and list all the operating details again
     @FXML
     private void clearYearMonthFilter(ActionEvent actionEvent) {
         monthChoiceBox.getSelectionModel().clearSelection();
@@ -187,6 +194,7 @@ public class ClinicDetailsController implements Initializable {
         initRecords();
     }
 
+    // Helper method to initialize the record in the table view (include all the operating details)
     private void initRecords() {
         Iterator<OperatingDetails> operatingDetailsIterator = OperatingDetailsDao.findAll();
         while (operatingDetailsIterator.hasNext()) {
