@@ -1,7 +1,7 @@
 
 ![](../iHealth/src/res/images/patient.png)
 
-iHealth is a clinic appointment system written in Java using JavaFX
+[iHealth](https://github.com/hongjiaherng/iHealth) is a clinic appointment system written in Java using JavaFX
 
 ## Contributors
     - Hong Jia Herng
