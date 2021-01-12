@@ -22,7 +22,7 @@ public class DBConnection {
     // shhhh... don't share this to public if you don't want your database in danger
     // Hide the username and password before sharing!!!!!
     private static final ConnectionString connectionString
-            = new ConnectionString("mongodb+srv://jherng630:jherng630@cluster0.cyk1y.mongodb.net/ihealth_db?retryWrites=true&w=majority");
+            = new ConnectionString("mongodb+srv://jherng:jherng@cluster0.cyk1y.mongodb.net/test");
     private static MongoClient mongoClient = null;
     private static MongoDatabase ihealthDB = null;
 
