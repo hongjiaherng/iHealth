@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="bson-3.11.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Program Files/Java/iHealth/mongodb/bson/3.11.0/bson-3.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Program Files/Java/iHealth/mongodb/mongodb-driver-core/3.11.0/mongodb-driver-core-3.11.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../../Program Files/Java/iHealth/mongodb/mongodb-driver-sync/3.11.0/mongodb-driver-sync-3.11.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
